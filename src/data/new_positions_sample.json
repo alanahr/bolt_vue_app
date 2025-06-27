@@ -1,0 +1,235 @@
+{"positions":[
+            {
+                "id": new ObjectId(),
+                "start_year":2022,
+                "start_month":1,
+                "start_day":31,
+                "end_year":2023,
+                "end_month":3,
+                "end_day":1,
+                "name":"Senior Software Engineer", 
+                "salary":120000,
+                "details":
+                [
+                    {   "id": new ObjectId(),
+                        "name":"Participated in Agile Core engineering team in an Agile environment, participated in daily standup and planning, addressed bugs and stories, collaborated with others to solve problems, and advised junior colleagues", 
+                        "description":
+                        {
+                            "type": "doc",
+                            "from": 0,
+                            "to": 159,
+                            "content": [
+                                    {
+                                    "type": "paragraph",
+                                    "from": 0,
+                                    "to": 77,
+                                    "content": [
+                                        {
+                                        "type": "text",
+                                        "from": 1,
+                                        "to": 76,
+                                        "text": "This is still the text editor you’re used to, but enriched with node views."
+                                        }
+                                    ]
+                                    },
+                                    {
+                                    "type": "vueComponent",
+                                    "from": 77,
+                                    "to": 78,
+                                    "attrs": {
+                                        "count": 0
+                                    }
+                                    },
+                                    {
+                                    "type": "paragraph",
+                                    "from": 78,
+                                    "to": 157,
+                                    "content": [
+                                        {
+                                        "type": "text",
+                                        "from": 79,
+                                        "to": 156,
+                                        "text": "Did you see that? That’s a Vue component. We are really living in the future."
+                                        }
+                                    ]
+                                    }
+                                ]
+                            },
+                        "tags":
+                        [
+                                {"id":new ObjectId(), "name":"agile", "entity_type":"skill" }
+                        ],
+                      
+                        "details":
+                        [
+                            {
+                            "id": new ObjectId(),
+                            "name":"main job thing I'm talking about here like TestRail", 
+                            "tags":[
+                                {"id":new ObjectId(), "name":"QA", "entity_type":"skill" },
+                                {"id":new ObjectId(), "name":"SDET", "entity_type":"skill" },
+                                {"id":new ObjectId(), "name":"TestRail", "entity_type":"tool" }
+                            ],
+                            "description": {}
+                            },
+                            {
+                            "id": new ObjectId(),
+                            "name":"Presentations and arcgis", 
+                            "tags":[
+                                {"id":new ObjectId(), "name":"ArcGIS", "entity_type":"tool" },
+                                {"id":new ObjectId(), "name":"GIS", "entity_type":"skill" }
+                            ],
+                            "description": {
+                                "type": "doc",
+                                "from": 0,
+                                "to": 277,
+                                "content": [
+                                    {
+                                    "type": "heading",
+                                    "from": 0,
+                                    "to": 13,
+                                    "attrs": {
+                                        "level": 1
+                                    },
+                                    "content": [
+                                        {
+                                        "type": "text",
+                                        "from": 1,
+                                        "to": 12,
+                                        "text": "Lorem Ipsum"
+                                        }
+                                    ]
+                                    },
+                                    {
+                                    "type": "paragraph",
+                                    "from": 13,
+                                    "to": 242,
+                                    "content": [
+                                        {
+                                        "type": "text",
+                                        "from": 14,
+                                        "to": 241,
+                                        "text": "Justo laoreet sit amet cursus sit. In massa tempor nec feugiat nisl pretium fusce. Vel quam elementum pulvinar etiam non. Nisl nisi scelerisque eu ultrices vitae. Odio ut enim blandit volutpat maecenas volutpat blandit aliquam."
+                                        }
+                                    ]
+                                    },
+                                    {
+                                    "type": "bulletList",
+                                    "from": 242,
+                                    "to": 267,
+                                    "content": [
+                                        {
+                                        "type": "listItem",
+                                        "from": 243,
+                                        "to": 266,
+                                        "content": [
+                                            {
+                                            "type": "paragraph",
+                                            "from": 244,
+                                            "to": 265,
+                                            "content": [
+                                                {
+                                                "type": "text",
+                                                "from": 245,
+                                                "to": 264,
+                                                "text": "this is a list item"
+                                                }
+                                            ]
+                                            }
+                                        ]
+                                        }
+                                    ]
+                                    },
+                                    {
+                                    "type": "heading",
+                                    "from": 267,
+                                    "to": 271,
+                                    "attrs": {
+                                        "level": 2
+                                    },
+                                    "content": [
+                                        {
+                                        "type": "text",
+                                        "from": 268,
+                                        "to": 270,
+                                        "text": "h2"
+                                        }
+                                    ]
+                                    },
+                                    {
+                                    "type": "paragraph",
+                                    "from": 271,
+                                    "to": 273
+                                    },
+                                    {
+                                    "type": "paragraph",
+                                    "from": 273,
+                                    "to": 275
+                                    }
+                                ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {   
+            "id": new ObjectId(),
+            "start_year":2017,
+            "start_month":6,
+            "start_day":5,
+            "end_year":2017,
+            "end_month":10,
+            "end_day":15,
+            "name":"QA Engineer",
+            "salary":70000,
+            "details":
+                [
+                    {   "id": new ObjectId(),
+                        "name":"daily standup and planning, bugs and stories, product owner", 
+                        "description": {},
+                        
+                        "tags":[
+                            {"id":8, "name":"agile", "entity_type":"skill" }
+                        ],
+                        "details": [
+                            {
+                            "id": 5,
+                            "name":"tested stuff", 
+                            "tags":[
+                                {"id":10, "name":"QA", "entity_type":"skill" },
+                                 {"id":8, "name":"agile", "entity_type":"skill" },
+                                 {"id":20, "name":"TestRail", "entity_type":"tool" }
+                                ],
+                            "description": {},
+                            "details": [
+                                {
+                                "id": 6,
+                                "name":"Presentations and arcgis", 
+                                "tags":[
+                                    {"id":16, "name":"ArcGIS", "entity_type":"tool" },
+                                {"id":18, "name":"GIS", "entity_type":"skill" }
+                                ],
+                                "description": {
+                                    },
+                                "details": []
+                                }
+                            ]
+                            }
+                        ]
+                    }
+                ]
+        },
+        {    
+        "id": 5,
+        "start_year":2017,
+        "start_month":10,
+        "start_day":16,
+        "end_year":2019,
+        "end_month":null,
+        "end_day":null,
+        "name":"(Sr) Data Operations Engineer", 
+        "salary":75000,
+        "details":[]
+        }
+]

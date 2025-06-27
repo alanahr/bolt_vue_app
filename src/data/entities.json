@@ -1,0 +1,43 @@
+{ 
+    "$id": "entities.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "A representation of an entity",
+    "title": "Entity",
+    "type": "object",
+    "required": ["id", "name"],
+    "additionalProperties": true,
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "Auto generated id."
+        },
+        "name": {
+            "type": "string",
+            "description": "The entity's name."
+        },
+        "entity_type": {
+            "type": "string",
+            "enum": [
+            "company",
+            "person",
+            "skill",
+            "location",
+            "room",
+            "container",
+            "equipment",
+            "muscles",
+            "meta",
+            "exercise_type",
+            "object",
+            "tool",
+            "other"
+            ],
+            "default": "tool"
+        },
+        "additional_properties": {
+            "type": "object"
+        }
+            
+    }
+    
+}
