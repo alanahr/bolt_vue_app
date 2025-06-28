@@ -25,7 +25,7 @@ const searchQuery = ref('');
 
 
 onMounted(async () => {
-  entities.value = entitiesStore.getEntities();
+  entities.value = await entitiesStore.getEntities();
   if (route.params.id) {
     const id = parseInt(route.params.id as string)
     const loadedEntity = await entitiesStore.getEntity(id)
@@ -33,6 +33,7 @@ onMounted(async () => {
       entity.value = loadedEntity
       if (loadedEntity.entity_parent) {
         const parentEntity = entities.value.find(e => e.id === loadedEntity.entity_parent.id);
+        const filteredNumbers = entities.filter(number => !excludedNumbers.includes(number));
         parentName.value = parentEntity.name
       }
     }
