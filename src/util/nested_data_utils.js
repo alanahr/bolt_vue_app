@@ -32,7 +32,7 @@ function* findValuesByKey(obj, targetKey) {
   }
 }
 // Example usage:
-const nestedObject = {
+const nestedObject2 = {
   id: 1,
   name: 'Parent',
   details: {
@@ -49,7 +49,7 @@ const nestedObject = {
   ]
 };
 console.log('Finding all "id" values:');
-for (const idValue of findValuesByKey(nestedObject, 'id')) {
+for (const idValue of findValuesByKey(nestedObject2, 'id')) {
   console.log(idValue);
 }
 
