@@ -5,4 +5,6 @@ export interface Entity {
   name: string;
   entity_type: string;
   entity_parent?: Entity;
+  color?: string;
+  icon?: string;
 }
