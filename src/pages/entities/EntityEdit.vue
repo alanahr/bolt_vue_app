@@ -31,8 +31,8 @@ onMounted(async () => {
     const loadedEntity = await entitiesStore.getEntity(id)
     if (loadedEntity) {
       entity.value = loadedEntity
-      if (loadedEntity.parent_entity) {
-        const parentEntity = await entitiesStore.getEntity(loadedEntity.parent_entity)
+      if (loadedEntity.entity_parent) {
+        const parentEntity = entities.value.find(e => e.id === loadedEntity.entity_parent.id);
         parentName.value = parentEntity.name
       }
     }
