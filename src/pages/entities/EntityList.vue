@@ -42,6 +42,9 @@ onMounted(async () => {
               <span v-if="entity.icon">
                 <i :title="`${entity.icon}`" :class="`${entity.icon}`"></i>
               </span> 
+              <span v-if="entity.icon && entity.color">
+                <i :style="`color:${entity.color};`" :title="`${entity.color} ${entity.icon}`" :class="`${entity.icon}`"></i>
+              </span> 
             </td>
             <td>
               <router-link :to="`/entities/${entity.id}`" class="btn btn-sm btn-info me-2">View</router-link>
