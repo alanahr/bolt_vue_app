@@ -32,6 +32,9 @@ onMounted(async () => {
             <td>{{ entity.id }}</td>
             <td>{{ entity.name }}</td>
             <td>{{ entity.entity_type }}</td>
+            <td>{{ entity.entity_parent }}</td>
+            <td>{{ entity.color }}</td>
+            <td>{{ entity.icon }}</td>
             <td>
               <router-link :to="`/entities/${entity.id}`" class="btn btn-sm btn-info me-2">View</router-link>
               <router-link :to="`/entities/${entity.id}/edit`" class="btn btn-sm btn-primary">Edit</router-link>
