@@ -35,10 +35,14 @@ onMounted(async () => {
             <td>{{ entity.entity_parent }}</td>
             <td>
               <span v-if="entity.color">
-              <div :style="`color:${entity.color};`">{{ entity.color }}</div>
-            </span> 
+                <div :style="`color:${entity.color};`">{{ entity.color }}</div>
+              </span> 
             </td>
-            <td>{{ entity.icon }}</td>
+            <td>
+              <span v-if="entity.icon">
+                <i :class="`${entity.icon};`">{{ entity.icon }}</i>
+              </span> 
+            </td>
             <td>
               <router-link :to="`/entities/${entity.id}`" class="btn btn-sm btn-info me-2">View</router-link>
               <router-link :to="`/entities/${entity.id}/edit`" class="btn btn-sm btn-primary">Edit</router-link>
