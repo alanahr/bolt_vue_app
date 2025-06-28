@@ -24,6 +24,7 @@ function* findValuesByKey(obj, targetKey) {
   }|
 }
 
+//todo test - seems wrong
 function flattenEntityTree(nodes, flatArray = [], entity_parent_id = null) {
   nodes.forEach(node => {
     const newNode = { ...node }; // Create a copy to avoid modifying original
