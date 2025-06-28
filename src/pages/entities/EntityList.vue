@@ -61,7 +61,7 @@ const getRawJSON = computed(() => {
     </div>
     <router-link to="/entities/new" class="btn btn-success">Create New Entity</router-link>
   </div>
-  <div class="container-fluid">
+  <div>
     <pre>
       {{ entities_json }}
     </pre>
