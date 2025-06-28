@@ -78,6 +78,26 @@ const handleSubmit = async () => {
             <input type="text" class="form-control" id="name" v-model="entity.name" required>
           </div>
         </div>
+
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div v-if="showEntitySearch" class="row">
+        <input
+          v-model="searchQuery"
+          class="form-control form-control-sm mb-2"
+          placeholder="Search entities..."
+        />
+        <div class="list-group">
+          <button
+            v-for="entity in filteredEntities"
+            :key="entity.id"
+            class="list-group-item list-group-item-action"
+            @click="addParent(entity)"
+          >
+            {{ entity.name }}
+          </button>
+        </div>
+      </div>
+        </div>
         
         <div class="col-sm-12 col-md-6 col-lg-4">
           <div class="mb-3">
