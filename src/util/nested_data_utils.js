@@ -23,6 +23,29 @@ function* findValuesByKey(obj, targetKey) {
     }
   }|
 }
+// Example usage:
+const nestedObject = {
+  id: 1,
+  name: 'Parent',
+  details: {
+    id: 2,
+    description: 'Some details',
+    nestedData: {
+      id: 3,
+      value: 'Deeply nested value'
+    }
+  },
+  items: [
+    { id: 4, name: 'Item A' },
+    { id: 5, name: 'Item B' }
+  ]
+};
+
+// console.log('Finding all "id" values:');
+// for (const idValue of findValuesByKey(nestedObject, 'id')) {
+//   console.log(idValue);
+// }
+
 
 //todo test - seems wrong
 function flattenEntityTree(nodes, flatArray = [], entity_parent_id = null) {
@@ -126,33 +149,6 @@ function getAncestors(tree, targetId, parentPath = []) {
   return []; // Target not found in this branch
 }
 
-// Example usage:
-const nestedObject = {
-  id: 1,
-  name: 'Parent',
-  details: {
-    id: 2,
-    description: 'Some details',
-    nestedData: {
-      id: 3,
-      value: 'Deeply nested value'
-    }
-  },
-  items: [
-    { id: 4, name: 'Item A' },
-    { id: 5, name: 'Item B' }
-  ]
-};
-
-console.log('Finding all "id" values:');
-for (const idValue of findValuesByKey(nestedObject, 'id')) {
-  console.log(idValue);
-}
-
-console.log('\nFinding all "value" values:');
-for (const val of findValuesByKey(nestedObject, 'value')) {
-  console.log(val);
-}
 
 const flatData = [
   { id: 1, name: 'Parent A' },
