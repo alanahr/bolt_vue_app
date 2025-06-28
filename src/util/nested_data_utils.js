@@ -40,7 +40,6 @@ const nestedObject = {
     { id: 5, name: 'Item B' }
   ]
 };
-
 // console.log('Finding all "id" values:');
 // for (const idValue of findValuesByKey(nestedObject, 'id')) {
 //   console.log(idValue);
@@ -61,20 +60,19 @@ function flattenEntityTree(nodes, flatArray = [], entity_parent_id = null) {
   });
   return flatArray;
 }
+// Example usage:
+const nestedData = [
+  { id: 1, name: 'Parent 1', children: [
+    { id: 2, name: 'Child 1.1', children: [
+      { id: 3, name: 'Grandchild 1.1.1' }
+    ]},
+    { id: 4, name: 'Child 1.2' }
+  ]},
+  { id: 5, name: 'Parent 2' }
+];
 
-    // Example usage:
-    const nestedData = [
-      { id: 1, name: 'Parent 1', children: [
-        { id: 2, name: 'Child 1.1', children: [
-          { id: 3, name: 'Grandchild 1.1.1' }
-        ]},
-        { id: 4, name: 'Child 1.2' }
-      ]},
-      { id: 5, name: 'Parent 2' }
-    ];
-
-    const flattenedData = flattenEntityTree(nestedData);
-    console.log(flattenedData);
+const flattenedData = flattenEntityTree(nestedData);
+console.log(flattenedData);
 
 
 //todo not used
