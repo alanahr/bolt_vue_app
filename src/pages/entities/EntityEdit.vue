@@ -94,7 +94,10 @@ const handleSubmit = async () => {
             <input type="text" class="form-control" id="name" v-model="entity.name" required>
           </div>
         </div>
-
+        <div class="col-sm-12 col-md-6 col-lg-4">
+<label for="parent_entity" class="form-label">Parent</label>
+            <input type="text" class="form-control" id="parent_entity" v-model="entity.parent_entity" disabled>
+        </div>
         <div class="col-sm-12 col-md-6 col-lg-4">
         <input
           v-model="searchQuery"
