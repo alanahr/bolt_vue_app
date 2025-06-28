@@ -104,8 +104,8 @@ const flatData = [
   { id: 4, name: 'Child 1.1.1', parentId: 2 },
   { id: 5, name: 'Child 2.1', parentId: 3 },
 ];
-const nestedData = flatToNestedViaEntityParent(flatData);
-console.log(JSON.stringify(nestedData, null, 2));
+const nestedDatav3 = flatToNestedViaEntityParent(flatData);
+console.log(JSON.stringify(nestedDatav3, null, 2));
 
 
 // use this one
