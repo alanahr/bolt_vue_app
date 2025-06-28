@@ -31,6 +31,11 @@ onMounted(async () => {
     const loadedEntity = await entitiesStore.getEntity(id)
     if (loadedEntity) {
       entity.value = loadedEntity
+      if (loadedEntity.parent_entity) {
+        const parentEntity = await entitiesStore.getEntity(loadedEntity.parent_entity)
+        parentEntity.value = parentEntity.id
+        parentName.value = parentEntity.name
+      }
     }
   }
 })
