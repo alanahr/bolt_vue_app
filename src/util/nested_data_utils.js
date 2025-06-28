@@ -24,11 +24,11 @@ function flatToNestedViaParent(data, parent_key) {
 
 const flatData = [
   { id: 1, name: 'Parent A' },
-  { id: 2, name: 'Child A1', parentId: 1 },
-  { id: 3, name: 'Child A2', parentId: 1 },
+  { id: 2, name: 'Child A1', parent_key: 1 },
+  { id: 3, name: 'Child A2', parent_key: 1 },
   { id: 4, name: 'Parent B' },
-  { id: 5, name: 'Child B1', parentId: 4 },
-  { id: 6, name: 'Grandchild B1a', parentId: 5 },
+  { id: 5, name: 'Child B1', parent_key: 4 },
+  { id: 6, name: 'Grandchild B1a', parent_key: 5 },
 ];
 const nestedData = buildNestedObject(flatData);
 console.log(nestedData);
