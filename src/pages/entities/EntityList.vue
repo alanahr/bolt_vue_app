@@ -40,7 +40,7 @@ onMounted(async () => {
             </td>
             <td>
               <span v-if="entity.icon">
-                <i :class="`${entity.icon}`">{{ entity.icon }}</i>
+                <i :title="`${entity.icon}`" :class="`${entity.icon}`"></i>
               </span> 
             </td>
             <td>
