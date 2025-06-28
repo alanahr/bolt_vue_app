@@ -8,6 +8,7 @@ import type { Entity } from '../../types/entity';
 const route = useRoute()
 const router = useRouter()
 const entitiesStore = useEntityStore()
+const entities = ref<Entity[]>([]);
 
 const entity = ref<Entity>({
   id: 0,
@@ -22,7 +23,11 @@ const entity = ref<Entity>({
 const searchQuery = ref('');
 const showEntitySearch = ref(false);
 
+
+
+  
 onMounted(async () => {
+  entities.value = entityStore.getEntities();
   if (route.params.id) {
     const id = parseInt(route.params.id as string)
     const loadedEntity = await entitiesStore.getEntity(id)
