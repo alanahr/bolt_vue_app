@@ -1,3 +1,52 @@
+function* findValuesByKey(obj, targetKey) {
+  // Iterate over the object's properties
+  for (const key in obj) {
+    // Ensure the property belongs to the object itself, not its prototype chain
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      const value = obj[key];
+
+      // If the current key matches the targetKey, yield the value
+      if (key === targetKey) {
+        yield value;
+      }
+
+      // If the value is an object (and not null), recursively call the generator
+      // and yield all values found in the nested object
+      if (typeof value === 'object' && value !== null) {
+        yield* findValuesByKey(value, targetKey);
+      }
+    }
+  }
+}
+
+// Example usage:
+const nestedObject = {
+  id: 1,
+  name: 'Parent',
+  details: {
+    id: 2,
+    description: 'Some details',
+    nestedData: {
+      id: 3,
+      value: 'Deeply nested value'
+    }
+  },
+  items: [
+    { id: 4, name: 'Item A' },
+    { id: 5, name: 'Item B' }
+  ]
+};
+
+console.log('Finding all "id" values:');
+for (const idValue of findValuesByKey(nestedObject, 'id')) {
+  console.log(idValue);
+}
+
+console.log('\nFinding all "value" values:');
+for (const val of findValuesByKey(nestedObject, 'value')) {
+  console.log(val);
+}
+
 
 function flatToNestedViaParent(data, parent_key) {
   const result = [];
