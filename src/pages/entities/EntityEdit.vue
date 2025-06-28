@@ -35,10 +35,17 @@ onMounted(async () => {
 const filteredEntities = computed(() => {
   return entities.value.filter(
     (entity) =>
-      entity.name.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
-      !props.detail.tags.some((tag) => tag.id === entity.id)
+      entity.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+
+const addParentEntity = (entity: Entity) => {
+  const updatedDetail = { ...props.detail };
+  updatedDetail.tags.push(entity);
+  emit('update:detail', updatedDetail);
+  showTagSearch.value = false;
+  searchQuery.value = '';
+};
 
 const handleSubmit = async () => {
   if (route.params.id) {
