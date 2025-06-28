@@ -136,6 +136,8 @@ function flatToNestedEntity(flatArray) {
     });
   return nestedTree;
 }
+const nestedData = flatToNestedEntity(flatData);
+console.log(JSON.stringify(nestedData, null, 2));
 
 
 function getEntityAncestors(data, targetId, parentKey = 'parentId', idKey = 'id', ancestors = []) {
