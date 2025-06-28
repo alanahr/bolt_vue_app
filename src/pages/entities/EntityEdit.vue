@@ -47,7 +47,7 @@ const filteredEntities = computed(() => {
   );
 });
 
-const addParentEntity = (entityid: number|string) => {
+const addParentEntity = (entityid: string) => {
   const parentEntity = await entitiesStore.getEntity(entityid)
   if (parentEntity) {
   parentName.value = parentEntity.name
@@ -103,12 +103,12 @@ const handleSubmit = async () => {
         />
         <div class="list-group">
           <button
-            v-for="entity in filteredEntities"
-            :key="entity.id"
+            v-for="parent_entity in filteredEntities"
+            :key="parent_entity.id"
             class="list-group-item list-group-item-action"
-            @click="addParent(entity)"
+            @click="addParentEntity(parent_entity.id)"
           >
-            {{ entity.name }}
+            {{ parent_entity.name }}
           </button>
         </div>
 
