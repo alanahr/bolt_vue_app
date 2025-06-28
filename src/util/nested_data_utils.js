@@ -34,7 +34,7 @@ const nestedData = buildNestedObject(flatData);
 console.log(nestedData);
 
 
-function flatToNested(flatArray) {
+function flatToNested(flatArray, parent_key) {
   const itemMap = {}; // Map to store items by their ID for quick lookup
   const nestedTree = []; // Array to store root-level items
 
@@ -46,9 +46,9 @@ function flatToNested(flatArray) {
   // Step 3: Build the tree
   flatArray.forEach(item => {
     const node = itemMap[item.id];
-    if (item.parentId && itemMap[item.parentId]) {
+    if (item.parent_key && itemMap[item.parent_key]) {
       // If item has a parent, add it to the parent's children array
-      itemMap[item.parentId].children.push(node);
+      itemMap[item.parent_key].children.push(node);
     } else {
       // If no parentId or parent not found, it's a root item
       nestedTree.push(node);
