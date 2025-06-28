@@ -63,7 +63,7 @@ const getRawJSON = computed(() => {
   </div>
   <div class="container-fluid">
     <pre>
-      {{ getRawJSON() }}
+      {{ entities_json }}
     </pre>
   </div>
 </template>
