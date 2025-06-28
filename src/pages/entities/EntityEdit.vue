@@ -25,7 +25,7 @@ const searchQuery = ref('');
 
 
 onMounted(async () => {
-  entities.value = entityStore.getEntities();
+  entities.value = entitiesStore.getEntities();
   if (route.params.id) {
     const id = parseInt(route.params.id as string)
     const loadedEntity = await entitiesStore.getEntity(id)
