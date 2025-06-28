@@ -108,7 +108,7 @@ const handleSubmit = async () => {
             v-for="entity_parent in filteredEntities"
             :key="entity_parent.id"
             class="list-group-item list-group-item-action"
-            @click="addParentEntity(entity_parent.id)"
+            @click.stop="addParentEntity(entity_parent.id)"
           >
             {{ entity_parent.name }}
           </button>
