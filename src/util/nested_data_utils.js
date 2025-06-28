@@ -9,8 +9,7 @@ function* findValuesByKey(obj, targetKey) {
     obj.forEach(o => {
       yield* findValuesByKey(o, targetKey);
     })
-  }
-  if (typeof obj === 'object'){
+  } else if (typeof obj === 'object'){
     // Iterate over the object's properties
     console.log("is object")
     
