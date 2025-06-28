@@ -13,10 +13,11 @@ onMounted(async () => {
 const getRawJSON = computed(() => {
   return JSON.stringify(entities.value, null, 2);
 });
+  
 </script>
 
 <template>
-  <div class="container">
+  <div class="container container-fluid">
     <h2>Entities</h2>
     <div class="table-responsive">
       <table class="table">
