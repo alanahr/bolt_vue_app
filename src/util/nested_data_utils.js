@@ -86,6 +86,20 @@ function flatToNestedViaEntityParent(data) {
   return result;
 }
 
+// Example Usage:
+const flatData = [
+  { id: 1, name: 'Root 1', parentId: null },
+  { id: 2, name: 'Child 1.1', parentId: 1 },
+  { id: 3, name: 'Root 2', parentId: null },
+  { id: 4, name: 'Child 1.1.1', parentId: 2 },
+  { id: 5, name: 'Child 2.1', parentId: 3 },
+];
+
+const nestedData = flatToNestedViaEntityParent(flatData);
+console.log(JSON.stringify(nestedData, null, 2));
+
+
+
 // use this one
 function flatToNestedEntity(flatArray) {
   const itemMap = {}; // Map to store items by their ID for quick lookup
@@ -168,32 +182,6 @@ if (ancestors) {
   console.log(`Ancestors of node ${targetNodeId}:`, ancestors.map(node => node.name));
 } else {
   console.log(`Node ${targetNodeId} not found.`);
-
-const flatData = [
-  { id: 1, name: 'Parent A' },
-  { id: 2, name: 'Child A1', entity_parent: 1 },
-  { id: 3, name: 'Child A2', entity_parent: 1 },
-  { id: 4, name: 'Parent B' },
-  { id: 5, name: 'Child B1', entity_parent: 4 },
-  { id: 6, name: 'Grandchild B1a', entity_parent: 5 },
-];
-const nestedData = buildNestedObject(flatData);
-console.log(nestedData);
-
-
-
-// Example Usage:
-const flatData = [
-  { id: 1, name: 'Root 1', parentId: null },
-  { id: 2, name: 'Child 1.1', parentId: 1 },
-  { id: 3, name: 'Root 2', parentId: null },
-  { id: 4, name: 'Child 1.1.1', parentId: 2 },
-  { id: 5, name: 'Child 2.1', parentId: 3 },
-];
-
-const nestedData = flatToNested(flatData);
-console.log(JSON.stringify(nestedData, null, 2));
-
 
 
     // Example usage:
