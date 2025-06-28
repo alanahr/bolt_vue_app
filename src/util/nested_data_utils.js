@@ -109,7 +109,6 @@ const nestedData = flatToNestedViaEntityParent(flatData);
 console.log(JSON.stringify(nestedData, null, 2));
 
 
-
 // use this one
 function flatToNestedEntity(flatArray) {
   const itemMap = {}; // Map to store items by their ID for quick lookup
@@ -136,6 +135,23 @@ function flatToNestedEntity(flatArray) {
     }
     });
   return nestedTree;
+}
+
+
+function getEntityAncestors(data, targetId, parentKey = 'parentId', idKey = 'id', ancestors = []) {
+  for (const node of data) {
+    if (node[idKey] === targetId) {
+      return ancestors; // Target found, return collected ancestors
+    }
+
+    if (node.children && node.children.length > 0) {
+      const result = getAncestors(node.children, targetId, parentKey, idKey, [...ancestors, node]);
+      if (result) {
+        return result; // Target found in a child branch
+      }
+    }
+  }
+  return null; // Target not found in this branch
 }
 
 //#todo - make yield function/generator
@@ -172,7 +188,6 @@ function getAncestors(tree, targetId, parentPath = []) {
   }
   return []; // Target not found in this branch
 }
-
 // Example Usage:
 const treeData = [
   { id: 1, name: 'Node A', children: [
@@ -184,10 +199,8 @@ const treeData = [
   ]},
   { id: 6, name: 'Node F' }
 ];
-
 const targetNodeId = 3;
 const ancestors = getAncestors(treeData, targetNodeId);
-
 if (ancestors) {
   console.log(`Ancestors of node ${targetNodeId}:`, ancestors.map(node => node.name));
 } else {
@@ -216,23 +229,3 @@ const data = {
     },
   ],
 };
-
-const targetId = 4;
-const ancestors = getAncestors(data, targetId);
-console.log(ancestors.map(node => node.name)); // Output: ["Root", "Child A", "Grandchild Y"]
-
-function getAncestors(data, targetId, parentKey = 'parentId', idKey = 'id', ancestors = []) {
-  for (const node of data) {
-    if (node[idKey] === targetId) {
-      return ancestors; // Target found, return collected ancestors
-    }
-
-    if (node.children && node.children.length > 0) {
-      const result = getAncestors(node.children, targetId, parentKey, idKey, [...ancestors, node]);
-      if (result) {
-        return result; // Target found in a child branch
-      }
-    }
-  }
-  return null; // Target not found in this branch
-}
