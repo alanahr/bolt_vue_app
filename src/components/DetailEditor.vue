@@ -59,9 +59,7 @@ onMounted(() => {
 const changeHeading = (h: number) => {
   selectedHeading.value = h;
 };
-const getRawJSON = computed(() => {
-  return JSON.stringify(entities.value, null, 2);
-});
+
   
 const checkHeadingL = computed(() => {
   if (editor.isActive('heading', { level: 1 })) {
