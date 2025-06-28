@@ -110,7 +110,7 @@ const handleSubmit = async () => {
             class="list-group-item list-group-item-action"
             @click="addParentEntity(entity_parent.id)"
           >
-            {{ parent_entity.name }}
+            {{ entity_parent.name }}
           </button>
         </div>
 
