@@ -95,6 +95,7 @@ const handleSubmit = async () => {
         <div class="col-sm-12 col-md-6 col-lg-4">
 <label for="parent_entity" class="form-label">Parent</label>
             <input type="text" class="form-control" id="parent_entity" v-model="entity.parent_entity" disabled>
+          {{ parentName }}
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4">
         <input
