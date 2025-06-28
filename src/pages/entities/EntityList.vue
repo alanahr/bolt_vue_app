@@ -12,7 +12,7 @@ onMounted(async () => {
 });
   
 const getRawJSON = computed(() => {
-  entities_json.value = JSON.stringify(entities.value, null, 2);
+  entities_json.value = JSON.stringify(entities, null, 2);
 });
   
 </script>
