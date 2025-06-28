@@ -1,4 +1,52 @@
-d && itemMap[item.parentId]) {
+
+function buildNestedObject(data) {
+  const result = [];
+  const itemMap = {};
+
+  data.forEach(item => {
+    itemMap[item.id] = item; // Store reference
+
+    if (item.parentId) {
+      const parent = itemMap[item.parentId];
+      if (parent) {
+        if (!parent.children) {
+          parent.children = [];
+        }
+        parent.children.push(item);
+      }
+    } else {
+      result.push(item); // Top-level item
+    }
+  });
+
+  return result;
+}
+
+const flatData = [
+  { id: 1, name: 'Parent A' },
+  { id: 2, name: 'Child A1', parentId: 1 },
+  { id: 3, name: 'Child A2', parentId: 1 },
+  { id: 4, name: 'Parent B' },
+  { id: 5, name: 'Child B1', parentId: 4 },
+  { id: 6, name: 'Grandchild B1a', parentId: 5 },
+];
+const nestedData = buildNestedObject(flatData);
+console.log(nestedData);
+
+
+function flatToNested(flatArray) {
+  const itemMap = {}; // Map to store items by their ID for quick lookup
+  const nestedTree = []; // Array to store root-level items
+
+  // Step 1 & 2: Create map and initialize children arrays
+  flatArray.forEach(item => {
+    itemMap[item.id] = { ...item, children: [] }; // Deep copy and add children array
+  });
+
+  // Step 3: Build the tree
+  flatArray.forEach(item => {
+    const node = itemMap[item.id];
+    if (item.parentId && itemMap[item.parentId]) {
       // If item has a parent, add it to the parent's children array
       itemMap[item.parentId].children.push(node);
     } else {
