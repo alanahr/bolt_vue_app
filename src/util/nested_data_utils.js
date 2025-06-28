@@ -62,6 +62,21 @@ function flattenEntityTree(nodes, flatArray = [], entity_parent_id = null) {
   return flatArray;
 }
 
+    // Example usage:
+    const nestedData = [
+      { id: 1, name: 'Parent 1', children: [
+        { id: 2, name: 'Child 1.1', children: [
+          { id: 3, name: 'Grandchild 1.1.1' }
+        ]},
+        { id: 4, name: 'Child 1.2' }
+      ]},
+      { id: 5, name: 'Parent 2' }
+    ];
+
+    const flattenedData = flattenEntityTree(nestedData);
+    console.log(flattenedData);
+
+
 //todo not used
 function flatToNestedViaEntityParent(data) {
   const result = [];
@@ -182,21 +197,6 @@ if (ancestors) {
   console.log(`Ancestors of node ${targetNodeId}:`, ancestors.map(node => node.name));
 } else {
   console.log(`Node ${targetNodeId} not found.`);
-
-
-    // Example usage:
-    const nestedData = [
-      { id: 1, name: 'Parent 1', children: [
-        { id: 2, name: 'Child 1.1', children: [
-          { id: 3, name: 'Grandchild 1.1.1' }
-        ]},
-        { id: 4, name: 'Child 1.2' }
-      ]},
-      { id: 5, name: 'Parent 2' }
-    ];
-
-    const flattenedData = flattenTree(nestedData);
-    console.log(flattenedData);
 
 
 
