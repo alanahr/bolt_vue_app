@@ -20,12 +20,10 @@ const entity = ref<Entity>({
 });
   //ref<Comment[]>([])
 
+const parentName = ref('');
 const searchQuery = ref('');
-const showEntitySearch = ref(false);
 
 
-
-  
 onMounted(async () => {
   entities.value = entityStore.getEntities();
   if (route.params.id) {
