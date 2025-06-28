@@ -36,8 +36,12 @@ const handleDelete = async () => {
     <h2>View Entity</h2>
     <div class="card">
       <div class="card-body">
-        <h3>{{ entity.name }}</h3>
+        <h3>{{ entity.id }}: {{ entity.name }}</h3>
         <p><strong>Type:</strong> {{ entity.entity_type }}</p>
+        <p><strong>Parent:</strong> {{ entity.entity_parent }}</p>
+        <p><strong>Color:</strong> {{ entity.color }}</p>
+        <p><strong>Icon:</strong> {{ entity.icon }}</p>
+        
         <div class="mt-3">
           <router-link :to="`/entities/${entity.id}/edit`" class="btn btn-primary me-2">Edit</router-link>
           <button @click="handleDelete" class="btn btn-danger">Delete</button>
