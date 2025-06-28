@@ -13,7 +13,9 @@ const entity = ref<Entity>({
   id: 0,
   name: '',
   entity_type: 'tool',
-  entity_parent: ''
+  entity_parent: '',
+  color: '',
+  icon: '',
 });
   //ref<Comment[]>([])
 
