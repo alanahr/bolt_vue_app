@@ -1,5 +1,5 @@
 
-function buildNestedObject(data) {
+function flatToNestedViaParent(data) {
   const result = [];
   const itemMap = {};
 
