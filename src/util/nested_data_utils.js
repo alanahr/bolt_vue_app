@@ -64,6 +64,7 @@ function flatToNestedViaEntityParent(data) {
   return result;
 }
 
+// use this one
 function flatToNestedEntity(flatArray) {
   const itemMap = {}; // Map to store items by their ID for quick lookup
   const nestedTree = []; // Array to store root-level items
