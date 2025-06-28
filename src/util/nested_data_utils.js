@@ -74,13 +74,18 @@ function flatToNested(flatArray) {
   // Step 3: Build the tree
   flatArray.forEach(item => {
     const node = itemMap[item.id];
-    if (item.entity_parent && itemMap[item.entity_parent]) {
-      // If item has a parent, add it to the parent's children array
-      itemMap[item.entity_parent].children.push(node);
-    } else {
-      // If no parentId or parent not found, it's a root item
-      nestedTree.push(node);
-    }
+    if (item.entity_parent){ 
+      if (typeof item.entity_parent == "object" && itemMap[item.entity_parent.id]) {
+        // If item has a parent, add it to the parent's children array
+        itemMap[item.entity_parent.id].children.push(node);
+      } else {
+        itemMap[item.entity_parent].children.push(node);
+        
+      }
+  } else {
+     // If no parentId or parent not found, it's a root item
+     nestedTree.push(node); 
+  }
   });
 
   return nestedTree;
@@ -117,11 +122,11 @@ for (const val of findValuesByKey(nestedObject, 'value')) {
 
 const flatData = [
   { id: 1, name: 'Parent A' },
-  { id: 2, name: 'Child A1', parent_key: 1 },
-  { id: 3, name: 'Child A2', parent_key: 1 },
+  { id: 2, name: 'Child A1', entity_parent: 1 },
+  { id: 3, name: 'Child A2', entity_parent: 1 },
   { id: 4, name: 'Parent B' },
-  { id: 5, name: 'Child B1', parent_key: 4 },
-  { id: 6, name: 'Grandchild B1a', parent_key: 5 },
+  { id: 5, name: 'Child B1', entity_parent: 4 },
+  { id: 6, name: 'Grandchild B1a', entity_parent: 5 },
 ];
 const nestedData = buildNestedObject(flatData);
 console.log(nestedData);
