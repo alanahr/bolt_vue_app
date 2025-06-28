@@ -17,7 +17,7 @@ const getRawJSON = computed(() => {
 </script>
 
 <template>
-  <div class="container container-fluid">
+  <div class="container">
     <h2>Entities</h2>
     <div class="table-responsive">
       <table class="table">
