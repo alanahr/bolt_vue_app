@@ -91,6 +91,7 @@ function flatToNestedEntity(flatArray) {
   return nestedTree;
 }
 
+//#todo - make yield function/generator
 function getAncestors(tree, targetId, parentPath = []) {
   // If the current node is an array, iterate over its elements.
   if (Array.isArray(tree)) {
