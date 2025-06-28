@@ -1,4 +1,10 @@
 function* findValuesByKey(obj, targetKey) {
+  
+  if (Array.isArray(obj)){
+    obj.forEach(o => {
+      yield* findValuesByKey(o, targetKey);
+    })
+  }
   // Iterate over the object's properties
   for (const key in obj) {
     // Ensure the property belongs to the object itself, not its prototype chain
