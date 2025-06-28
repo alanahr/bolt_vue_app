@@ -40,10 +40,10 @@ const nestedObject = {
     { id: 5, name: 'Item B' }
   ]
 };
-// console.log('Finding all "id" values:');
-// for (const idValue of findValuesByKey(nestedObject, 'id')) {
-//   console.log(idValue);
-// }
+console.log('Finding all "id" values:');
+for (const idValue of findValuesByKey(nestedObject, 'id')) {
+  console.log(idValue);
+}
 
 
 //todo test - seems wrong
@@ -70,7 +70,6 @@ const nestedData = [
   ]},
   { id: 5, name: 'Parent 2' }
 ];
-
 const flattenedData = flattenEntityTree(nestedData);
 console.log(flattenedData);
 
@@ -98,7 +97,6 @@ function flatToNestedViaEntityParent(data) {
 
   return result;
 }
-
 // Example Usage:
 const flatData = [
   { id: 1, name: 'Root 1', parentId: null },
@@ -107,7 +105,6 @@ const flatData = [
   { id: 4, name: 'Child 1.1.1', parentId: 2 },
   { id: 5, name: 'Child 2.1', parentId: 3 },
 ];
-
 const nestedData = flatToNestedViaEntityParent(flatData);
 console.log(JSON.stringify(nestedData, null, 2));
 
