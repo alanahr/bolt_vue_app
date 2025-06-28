@@ -149,6 +149,25 @@ function getAncestors(tree, targetId, parentPath = []) {
   return []; // Target not found in this branch
 }
 
+// Example Usage:
+const treeData = [
+  { id: 1, name: 'Node A', children: [
+    { id: 2, name: 'Node B', parentId: 1, children: [
+      { id: 3, name: 'Node C', parentId: 2 },
+      { id: 4, name: 'Node D', parentId: 2 }
+    ]},
+    { id: 5, name: 'Node E', parentId: 1 }
+  ]},
+  { id: 6, name: 'Node F' }
+];
+
+const targetNodeId = 3;
+const ancestors = getAncestors(treeData, targetNodeId);
+
+if (ancestors) {
+  console.log(`Ancestors of node ${targetNodeId}:`, ancestors.map(node => node.name));
+} else {
+  console.log(`Node ${targetNodeId} not found.`);
 
 const flatData = [
   { id: 1, name: 'Parent A' },
@@ -234,23 +253,3 @@ function getAncestors(data, targetId, parentKey = 'parentId', idKey = 'id', ance
   }
   return null; // Target not found in this branch
 }
-
-// Example Usage:
-const treeData = [
-  { id: 1, name: 'Node A', children: [
-    { id: 2, name: 'Node B', parentId: 1, children: [
-      { id: 3, name: 'Node C', parentId: 2 },
-      { id: 4, name: 'Node D', parentId: 2 }
-    ]},
-    { id: 5, name: 'Node E', parentId: 1 }
-  ]},
-  { id: 6, name: 'Node F' }
-];
-
-const targetNodeId = 3;
-const ancestors = getAncestors(treeData, targetNodeId);
-
-if (ancestors) {
-  console.log(`Ancestors of node ${targetNodeId}:`, ancestors.map(node => node.name));
-} else {
-  console.log(`Node ${targetNodeId} not found.`);
