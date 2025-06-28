@@ -19,6 +19,9 @@ const entity = ref<Entity>({
 });
   //ref<Comment[]>([])
 
+const searchQuery = ref('');
+const showEntitySearch = ref(false);
+
 onMounted(async () => {
   if (route.params.id) {
     const id = parseInt(route.params.id as string)
