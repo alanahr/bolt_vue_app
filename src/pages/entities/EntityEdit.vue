@@ -39,6 +39,7 @@ onMounted(async () => {
   }
 })
 
+
 const filteredEntities = computed(() => {
   return entities.value.filter(
     (entity) =>
@@ -46,13 +47,14 @@ const filteredEntities = computed(() => {
   );
 });
 
-const addParentEntity = (entity: Entity) => {
-  const updatedDetail = { ...props.detail };
-  updatedDetail.tags.push(entity);
-  emit('update:detail', updatedDetail);
-  showTagSearch.value = false;
-  searchQuery.value = '';
-};
+const addParentEntity = (entityid: number) => {
+  const parentEntity = await entitiesStore.getEntity(entityid)
+  if (parentEntity) {
+  parentName.value = parentEntity.name
+  }
+}
+
+  
 
 const handleSubmit = async () => {
   if (route.params.id) {
