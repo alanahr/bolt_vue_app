@@ -1,5 +1,4 @@
 function* findValuesByKey(obj, targetKey) {
-  
   if (Array.isArray(obj)){
     obj.forEach(o => {
       yield* findValuesByKey(o, targetKey);
@@ -24,6 +23,69 @@ function* findValuesByKey(obj, targetKey) {
     }
   }|
 }
+
+function flattenEntityTree(nodes, flatArray = [], entity_parent_id = null) {
+  nodes.forEach(node => {
+    const newNode = { ...node }; // Create a copy to avoid modifying original
+    newNode.entity_parent = entity_parent_id; // Add parentId to the flattened object
+    delete newNode.children; // Remove children property from the flattened object
+    flatArray.push(newNode);
+
+    if (node.children && node.children.length > 0) {
+      flattenTree(node.children, flatArray, node.id); // Assuming 'id' is the unique identifier
+    }
+  });
+  return flatArray;
+}
+
+
+function flatToNestedViaParent(data, parent_key) {
+  const result = [];
+  const itemMap = {};
+
+  data.forEach(item => {
+    itemMap[item.id] = item; // Store reference
+
+    if (item.parent_key) {
+      const parent = itemMap[item.parent_key];
+      if (parent) {
+        if (!parent.children) {
+          parent.children = [];
+        }
+        parent.children.push(item);
+      }
+    } else {
+      result.push(item); // Top-level item
+    }
+  });
+
+  return result;
+}
+
+function flatToNested(flatArray, parent_key) {
+  const itemMap = {}; // Map to store items by their ID for quick lookup
+  const nestedTree = []; // Array to store root-level items
+
+  // Step 1 & 2: Create map and initialize children arrays
+  flatArray.forEach(item => {
+    itemMap[item.id] = { ...item, children: [] }; // Deep copy and add children array
+  });
+
+  // Step 3: Build the tree
+  flatArray.forEach(item => {
+    const node = itemMap[item.id];
+    if (item.parent_key && itemMap[item.parent_key]) {
+      // If item has a parent, add it to the parent's children array
+      itemMap[item.parent_key].children.push(node);
+    } else {
+      // If no parentId or parent not found, it's a root item
+      nestedTree.push(node);
+    }
+  });
+
+  return nestedTree;
+}
+
 
 // Example usage:
 const nestedObject = {
@@ -53,30 +115,6 @@ for (const val of findValuesByKey(nestedObject, 'value')) {
   console.log(val);
 }
 
-
-function flatToNestedViaParent(data, parent_key) {
-  const result = [];
-  const itemMap = {};
-
-  data.forEach(item => {
-    itemMap[item.id] = item; // Store reference
-
-    if (item.parent_key) {
-      const parent = itemMap[item.parent_key];
-      if (parent) {
-        if (!parent.children) {
-          parent.children = [];
-        }
-        parent.children.push(item);
-      }
-    } else {
-      result.push(item); // Top-level item
-    }
-  });
-
-  return result;
-}
-
 const flatData = [
   { id: 1, name: 'Parent A' },
   { id: 2, name: 'Child A1', parent_key: 1 },
@@ -89,29 +127,6 @@ const nestedData = buildNestedObject(flatData);
 console.log(nestedData);
 
 
-function flatToNested(flatArray, parent_key) {
-  const itemMap = {}; // Map to store items by their ID for quick lookup
-  const nestedTree = []; // Array to store root-level items
-
-  // Step 1 & 2: Create map and initialize children arrays
-  flatArray.forEach(item => {
-    itemMap[item.id] = { ...item, children: [] }; // Deep copy and add children array
-  });
-
-  // Step 3: Build the tree
-  flatArray.forEach(item => {
-    const node = itemMap[item.id];
-    if (item.parent_key && itemMap[item.parent_key]) {
-      // If item has a parent, add it to the parent's children array
-      itemMap[item.parent_key].children.push(node);
-    } else {
-      // If no parentId or parent not found, it's a root item
-      nestedTree.push(node);
-    }
-  });
-
-  return nestedTree;
-}
 
 // Example Usage:
 const flatData = [
@@ -126,19 +141,6 @@ const nestedData = flatToNested(flatData);
 console.log(JSON.stringify(nestedData, null, 2));
 
 
- function flattenTree(nodes, flatArray = [], parentId = null) {
-      nodes.forEach(node => {
-        const newNode = { ...node }; // Create a copy to avoid modifying original
-        newNode.parentId = parentId; // Add parentId to the flattened object
-        delete newNode.children; // Remove children property from the flattened object
-        flatArray.push(newNode);
-
-        if (node.children && node.children.length > 0) {
-          flattenTree(node.children, flatArray, node.id); // Assuming 'id' is the unique identifier
-        }
-      });
-      return flatArray;
-    }
 
     // Example usage:
     const nestedData = [
