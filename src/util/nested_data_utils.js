@@ -206,6 +206,7 @@ if (ancestors) {
   console.log(`Ancestors of node ${targetNodeId}:`, ancestors.map(node => node.name));
 } else {
   console.log(`Node ${targetNodeId} not found.`);
+}
 
 
 
