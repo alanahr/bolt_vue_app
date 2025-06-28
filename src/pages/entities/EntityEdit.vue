@@ -33,7 +33,7 @@ onMounted(async () => {
       entity.value = loadedEntity
       if (loadedEntity.entity_parent) {
         const parentEntity = entities.value.find(e => e.id === loadedEntity.entity_parent.id);
-        const filteredNumbers = entities.filter(number => !excludedNumbers.includes(number));
+        
         parentName.value = parentEntity.name
       }
     }
@@ -45,7 +45,9 @@ const filteredEntities = computed(() => {
   return entities.value.filter(
     (entity) =>
       entity.name.toLowerCase().includes(searchQuery.value.toLowerCase())
-  );
+  )
+    .filter(number => !excludedNumbers.includes(number));
+    ;
 });
 
 const addParentEntity = (id: string) => {
