@@ -39,15 +39,15 @@ function flattenEntityTree(nodes, flatArray = [], entity_parent_id = null) {
 }
 
 
-function flatToNestedViaParent(data, parent_key) {
+function flatToNestedViaEntityParent(data) {
   const result = [];
   const itemMap = {};
 
   data.forEach(item => {
     itemMap[item.id] = item; // Store reference
 
-    if (item.parent_key) {
-      const parent = itemMap[item.parent_key];
+    if (item.entity_parent) {
+      const parent = itemMap[item.entity_parent];
       if (parent) {
         if (!parent.children) {
           parent.children = [];
@@ -62,7 +62,7 @@ function flatToNestedViaParent(data, parent_key) {
   return result;
 }
 
-function flatToNested(flatArray, parent_key) {
+function flatToNested(flatArray) {
   const itemMap = {}; // Map to store items by their ID for quick lookup
   const nestedTree = []; // Array to store root-level items
 
@@ -74,9 +74,9 @@ function flatToNested(flatArray, parent_key) {
   // Step 3: Build the tree
   flatArray.forEach(item => {
     const node = itemMap[item.id];
-    if (item.parent_key && itemMap[item.parent_key]) {
+    if (item.entity_parent && itemMap[item.entity_parent]) {
       // If item has a parent, add it to the parent's children array
-      itemMap[item.parent_key].children.push(node);
+      itemMap[item.entity_parent].children.push(node);
     } else {
       // If no parentId or parent not found, it's a root item
       nestedTree.push(node);
