@@ -21,6 +21,9 @@ onMounted(async () => {
             <th>ID</th>
             <th>Name</th>
             <th>Type</th>
+            <th>Parent</th>
+            <th>Color</th>
+            <th>Icon</th>
             <th>Actions</th>
           </tr>
         </thead>
