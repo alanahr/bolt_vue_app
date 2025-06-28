@@ -50,7 +50,7 @@ const filteredEntities = computed(() => {
 const addParentEntity = (id: string) => {
   const parentEntity = entities.value.find(e => e.id === id);
   if (parentEntity) {
-  parentName.value = parentEntity.name
+   entity.value.entity_parent = parentEntity
   }
 }
   
