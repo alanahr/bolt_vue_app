@@ -7,7 +7,7 @@ function flatToNestedViaParent(data, parent_key) {
     itemMap[item.id] = item; // Store reference
 
     if (item.parent_key) {
-      const parent = itemMap[item.parentId];
+      const parent = itemMap[item.parent_key];
       if (parent) {
         if (!parent.children) {
           parent.children = [];
