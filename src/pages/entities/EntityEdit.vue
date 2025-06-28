@@ -45,7 +45,7 @@ const filteredEntities = computed(() => {
     (entity) =>
       entity.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
-});
+})
 
 const addParentEntity = (entityid: string) => {
   const parentEntity = await entitiesStore.getEntity(entityid)
@@ -53,9 +53,7 @@ const addParentEntity = (entityid: string) => {
   parentName.value = parentEntity.name
   }
 }
-
   
-
 const handleSubmit = async () => {
   if (route.params.id) {
     await entitiesStore.updateEntity(parseInt(route.params.id as string), entity.value)
