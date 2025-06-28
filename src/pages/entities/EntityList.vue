@@ -5,13 +5,14 @@ import type { Entity } from '../../types/entity'
 
 const entitiesStore = useEntityStore()
 const entities = ref<Entity[]>([]);
+const entities_json = ref('')
 
 onMounted(async () => {
   entities.value = await entitiesStore.getEntities()
 });
   
 const getRawJSON = computed(() => {
-  return JSON.stringify(entities.value, null, 2);
+  entities_json.value = JSON.stringify(entities.value, null, 2);
 });
   
 </script>
