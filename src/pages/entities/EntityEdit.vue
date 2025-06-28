@@ -37,7 +37,7 @@ onMounted(async () => {
       }
     }
   }
-})
+});
 
 
 const filteredEntities = computed(() => {
@@ -45,7 +45,7 @@ const filteredEntities = computed(() => {
     (entity) =>
       entity.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
-})
+});
 
 const addParentEntity = (entityid: string) => {
   const parentEntity = await entitiesStore.getEntity(entityid)
