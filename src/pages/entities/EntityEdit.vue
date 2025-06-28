@@ -33,7 +33,6 @@ onMounted(async () => {
       entity.value = loadedEntity
       if (loadedEntity.parent_entity) {
         const parentEntity = await entitiesStore.getEntity(loadedEntity.parent_entity)
-        parentEntity.value = parentEntity.id
         parentName.value = parentEntity.name
       }
     }
