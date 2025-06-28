@@ -39,7 +39,7 @@ onMounted(async () => {
               </span> 
             </td>
             <td>
-              <span v-if="entity.icon">
+              <span v-if="entity.icon && !entity.color">
                 <i :title="`${entity.icon}`" :class="`${entity.icon}`"></i>
               </span> 
               <span v-if="entity.icon && entity.color">
