@@ -21,7 +21,7 @@ function* findValuesByKey(obj, targetKey) {
         }
       }
     }
-  }|
+  }
 }
 // Example usage:
 const nestedObject = {
@@ -44,7 +44,6 @@ console.log('Finding all "id" values:');
 for (const idValue of findValuesByKey(nestedObject, 'id')) {
   console.log(idValue);
 }
-
 
 //todo test - seems wrong
 function flattenEntityTree(nodes, flatArray = [], entity_parent_id = null) {
@@ -210,24 +209,3 @@ if (ancestors) {
 
 
 
-
-// Example usage:
-const data = {
-  id: 1,
-  name: "Root",
-  children: [
-    {
-      id: 2,
-      name: "Child A",
-      children: [
-        { id: 3, name: "Grandchild X" },
-        { id: 4, name: "Grandchild Y" },
-      ],
-    },
-    {
-      id: 5,
-      name: "Child B",
-      children: [{ id: 6, name: "Grandchild Z" }],
-    },
-  ],
-};
