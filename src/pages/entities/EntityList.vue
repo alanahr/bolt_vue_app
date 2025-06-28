@@ -22,8 +22,7 @@ onMounted(async () => {
             <th>Name</th>
             <th>Type</th>
             <th>Parent</th>
-            <th>Color</th>
-            <th>Icon</th>
+            <th>Color/Icon</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -37,11 +36,11 @@ onMounted(async () => {
               <span v-if="entity.color && !entity.icon">
                 <div :style="`color:${entity.color};`">{{ entity.color }}</div>
               </span> 
-            </td>
-            <td>
+            
               <span v-if="entity.icon && !entity.color">
                 <i :title="`${entity.icon}`" :class="`${entity.icon}`"></i>
               </span> 
+              
               <span v-if="entity.icon && entity.color">
                 <i :style="`color:${entity.color};`" :title="`${entity.color} ${entity.icon}`" :class="`${entity.icon}`"></i>
               </span> 
