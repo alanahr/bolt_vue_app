@@ -35,7 +35,7 @@ onMounted(async () => {
             <td>{{ entity.entity_parent }}</td>
             <td>
               <span v-if="entity.color">
-              <div class="btn btn-sm" :style="color: entity.color ;"></div>
+              <div class="btn btn-sm" :style="color:${entity.color};"></div>
             </span> 
             </td>
             <td>{{ entity.icon }}</td>
