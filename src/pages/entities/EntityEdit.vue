@@ -104,7 +104,7 @@ const handleSubmit = async () => {
           placeholder="Search entities..."
         />
         <div class="list-group">
-          <button
+          <button type="button"
             v-for="entity_parent in filteredEntities"
             :key="entity_parent.id"
             class="list-group-item list-group-item-action"
