@@ -8,7 +8,7 @@ const entities = ref<Entity[]>([]);
 
 onMounted(async () => {
   entities.value = await entitiesStore.getEntities()
-})
+});
   
 const getRawJSON = computed(() => {
   return JSON.stringify(entities.value, null, 2);
