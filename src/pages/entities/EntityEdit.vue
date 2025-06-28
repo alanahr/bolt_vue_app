@@ -47,8 +47,8 @@ const filteredEntities = computed(() => {
   );
 });
 
-const addParentEntity = (entityid: string) => {
-  const parentEntity = await entitiesStore.getEntity(entityid)
+const addParentEntity = (id: string) => {
+  const parentEntity = entities.value.find(e => e.id === id);
   if (parentEntity) {
   parentName.value = parentEntity.name
   }
