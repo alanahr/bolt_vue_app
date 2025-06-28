@@ -39,6 +39,7 @@ function flattenEntityTree(nodes, flatArray = [], entity_parent_id = null) {
 }
 
 
+//todo not used
 function flatToNestedViaEntityParent(data) {
   const result = [];
   const itemMap = {};
@@ -62,7 +63,7 @@ function flatToNestedViaEntityParent(data) {
   return result;
 }
 
-function flatToNested(flatArray) {
+function flatToNestedEntity(flatArray) {
   const itemMap = {}; // Map to store items by their ID for quick lookup
   const nestedTree = []; // Array to store root-level items
 
@@ -80,14 +81,12 @@ function flatToNested(flatArray) {
         itemMap[item.entity_parent.id].children.push(node);
       } else {
         itemMap[item.entity_parent].children.push(node);
-        
       }
-  } else {
-     // If no parentId or parent not found, it's a root item
-     nestedTree.push(node); 
-  }
-  });
-
+    } else {
+       // If no parentId or parent not found, it's a root item
+       nestedTree.push(node); 
+    }
+    });
   return nestedTree;
 }
 
