@@ -110,3 +110,39 @@ const data = {
 const targetId = 4;
 const ancestors = getAncestors(data, targetId);
 console.log(ancestors.map(node => node.name)); // Output: ["Root", "Child A", "Grandchild Y"]
+
+function getAncestors(data, targetId, parentKey = 'parentId', idKey = 'id', ancestors = []) {
+  for (const node of data) {
+    if (node[idKey] === targetId) {
+      return ancestors; // Target found, return collected ancestors
+    }
+
+    if (node.children && node.children.length > 0) {
+      const result = getAncestors(node.children, targetId, parentKey, idKey, [...ancestors, node]);
+      if (result) {
+        return result; // Target found in a child branch
+      }
+    }
+  }
+  return null; // Target not found in this branch
+}
+
+// Example Usage:
+const treeData = [
+  { id: 1, name: 'Node A', children: [
+    { id: 2, name: 'Node B', parentId: 1, children: [
+      { id: 3, name: 'Node C', parentId: 2 },
+      { id: 4, name: 'Node D', parentId: 2 }
+    ]},
+    { id: 5, name: 'Node E', parentId: 1 }
+  ]},
+  { id: 6, name: 'Node F' }
+];
+
+const targetNodeId = 3;
+const ancestors = getAncestors(treeData, targetNodeId);
+
+if (ancestors) {
+  console.log(`Ancestors of node ${targetNodeId}:`, ancestors.map(node => node.name));
+} else {
+  console.log(`Node ${targetNodeId} not found.`);
