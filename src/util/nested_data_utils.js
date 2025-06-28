@@ -1,12 +1,12 @@
 
-function flatToNestedViaParent(data) {
+function flatToNestedViaParent(data, parent_key) {
   const result = [];
   const itemMap = {};
 
   data.forEach(item => {
     itemMap[item.id] = item; // Store reference
 
-    if (item.parentId) {
+    if (item.parent_key) {
       const parent = itemMap[item.parentId];
       if (parent) {
         if (!parent.children) {
