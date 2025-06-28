@@ -93,8 +93,8 @@ const handleSubmit = async () => {
           </div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4">
-<label for="parent_entity" class="form-label">Parent</label>
-            <input type="text" class="form-control" id="parent_entity" v-model="entity.parent_entity" disabled>
+<label for="entity_parent" class="form-label">Parent</label>
+            <input type="text" class="form-control" id="" v-model="entity.entity_parent" disabled>
           {{ parentName }}
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4">
@@ -105,10 +105,10 @@ const handleSubmit = async () => {
         />
         <div class="list-group">
           <button
-            v-for="parent_entity in filteredEntities"
-            :key="parent_entity.id"
+            v-for="entity_parent in filteredEntities"
+            :key="entity_parent.id"
             class="list-group-item list-group-item-action"
-            @click="addParentEntity(parent_entity.id)"
+            @click="addParentEntity(entity_parent.id)"
           >
             {{ parent_entity.name }}
           </button>
