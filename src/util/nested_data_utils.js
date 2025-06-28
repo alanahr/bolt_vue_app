@@ -7,7 +7,9 @@ function* findValuesByKey(obj, targetKey) {
   console.log(typeof obj)
   if (Array.isArray(obj)){
     obj.forEach(o => {
-      yield* findValuesByKey(o, targetKey);
+      console.log("iterating over array...")
+      console.log(o)
+      yield findValuesByKey(o, targetKey);
     })
   } else if (typeof obj === 'object'){
     // Iterate over the object's properties
