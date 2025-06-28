@@ -1,38 +1,4 @@
-function* findValuesByKey(obj, targetKey) {
-  console.log("input object...")
-  console.log(obj)
-  console.log("is array?")
-  console.log(Array.isArray(obj))
-  console.log("object is type...")
-  console.log(typeof obj)
-  if (Array.isArray(obj)){
-    obj.forEach(o => {
-      console.log("iterating over array...")
-      console.log(o)
-      yield findValuesByKey(o, targetKey);
-    })
-  } else if (typeof obj === 'object'){
-    // Iterate over the object's properties
-    console.log("is object")
-    
-    for (const key in obj) {
-      // Ensure the property belongs to the object itself, not its prototype chain
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        const value = obj[key];
-        // If the current key matches the targetKey, yield the value
-        console.log(key)
-        if (key === targetKey) {
-          yield value;
-        }
-        // If the value is an object (and not null), recursively call the generator
-        // and yield all values found in the nested object
-        if (typeof value === 'object' && value !== null) {
-          yield* findValuesByKey(value, targetKey);
-        }
-      }
-    }
-  }
-}
+
 // Example usage:
 const nestedObject2 = {
   id: 1,
