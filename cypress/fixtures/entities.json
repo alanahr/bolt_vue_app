@@ -2,16 +2,25 @@
   {
     "id": 1,
     "name": "JavaScript",
-    "entity_type": "skill"
+    "entity_type": "skill",
+    "entity_parent": "",
+    "color": "",
+    "icon": ""
   },
   {
     "id": 2,
     "name": "Vue.js",
-    "entity_type": "skill"
+    "entity_type": "skill",
+    "entity_parent": "",
+    "color": "",
+    "icon": ""
   },
   {
     "id": 3,
     "name": "TestRail",
-    "entity_type": "tool"
+    "entity_type": "tool",
+    "entity_parent": "",
+    "color": "",
+    "icon": ""
   }
 ]
