@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useEntityStore } from '../../stores/entities'
 import type { Entity } from '../../types/entity'
 
