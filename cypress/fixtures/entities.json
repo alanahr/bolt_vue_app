@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "JavaScript",
+    "entity_type": "skill"
+  },
+  {
+    "id": 2,
+    "name": "Vue.js",
+    "entity_type": "skill"
+  },
+  {
+    "id": 3,
+    "name": "TestRail",
+    "entity_type": "tool"
+  }
+]

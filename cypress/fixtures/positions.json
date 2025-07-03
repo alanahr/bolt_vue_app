@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Senior Software Engineer",
+    "start_year": 2022,
+    "start_month": 1,
+    "start_day": 31,
+    "end_year": 2023,
+    "end_month": 3,
+    "end_day": 1,
+    "salary": 120000,
+    "details": []
+  },
+  {
+    "id": 2,
+    "name": "QA Engineer",
+    "start_year": 2021,
+    "start_month": 6,
+    "start_day": 15,
+    "end_year": 2022,
+    "end_month": 1,
+    "end_day": 30,
+    "salary": 75000,
+    "details": []
+  }
+]
