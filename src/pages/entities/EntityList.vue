@@ -7,6 +7,7 @@ const entitiesStore = useEntityStore()
 const entities = ref<Entity[]>([]);
 const entities_json = ref('')
 
+  
 onMounted(async () => {
   entities.value = await entitiesStore.getEntities()
 });
