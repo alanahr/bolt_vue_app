@@ -5,6 +5,7 @@ import Details from '@tiptap/extension-details';
 import DetailsContent from '@tiptap/extension-details-content';
 import DetailsSummary from '@tiptap/extension-details-summary';
 import StarterKit from '@tiptap/starter-kit';
+  
 import type { Detail } from '../types/detail';
 import type { Entity } from '../types/entity';
 import { useEntityStore } from '../stores/entities';
