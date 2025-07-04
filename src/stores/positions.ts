@@ -173,14 +173,14 @@ export const usePositionStore = defineStore('positions', () => {
   const sampleData = [
     {
       id: nextId++,
-      name: 'Senior Software Engineer',
-      start_year: 2022,
+      name: 'Software Engineer',
+      start_year: 2010,
       start_month: 1,
-      start_day: 31,
-      end_year: 2023,
+      start_day: 1,
+      end_year: 2015,
       end_month: 3,
       end_day: 1,
-      salary: 120000,
+      salary: 123456,
       details: [details],
     },
   ];
