@@ -1,4 +1,5 @@
 <template>
+ 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/">
@@ -31,7 +32,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/companies" active-class="active">
+            <router-link class="nav-link" to="/positions" active-class="active">
               Jobs
             </router-link>
           </li>
@@ -65,4 +66,6 @@
       </div>
     </div>
   </nav>
+
+  
 </template>
