@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import nestedDraggable from "./infra/nested";
+import nestedDraggable from "../../components/Nested";
 export default {
   name: "nested-example",
   display: "Nested",
