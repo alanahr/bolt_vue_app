@@ -28,7 +28,7 @@
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/entities" active-class="active">
-              <i :class="`${this.entitiesIcon};`" class="me-2"></i> Entities
+              <i class="bi bi-building me-2"></i> Entities
             </router-link>
           </li>
           <li class="nav-item">
