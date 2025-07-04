@@ -9,6 +9,7 @@ export const useEntityStore = defineStore('entities', () => {
   
 let nextTagId = 1;
 
+  //#todo figure out if using objectid or number (new ObjectId())
 const tagData = [
   {id: nextTagId++, name:"agile", entity_type:"skill", color:"", icon:"", entity_parent: null },
   {id: nextTagId++, name:"QA", entity_type:"skill", color:"", icon:"", entity_parent: null  },
