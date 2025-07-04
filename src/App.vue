@@ -1,9 +1,17 @@
 <template>
-  <div class="app-container">
     <AppNavbar />
     
   <div class="container">
-    <router-view></router-view>
+    <main class="container-fluid py-4">
+      <div class="row">
+            <AlertBar />
+          </div>
+        <router-view></router-view>
+
+    </main>
+     <AppFooter />
+   
+    
   </div>
 </template>
 
