@@ -11,11 +11,11 @@ let nextTagId = 1;
 
 const tagData = [
   {id: nextTagId++, name:"agile", entity_type:"skill", color:"", icon:"", entity_parent: null },
-  {id: nextTagId++, name:"QA", entity_type:"skill" },
-                                {id:nextTagId++, name:"SDET", entity_type:"skill" },
-                                {id:nextTagId++, name:"TestRail", entity_type:"tool" },
+  {id: nextTagId++, name:"QA", entity_type:"skill", color:"", icon:"", entity_parent: null  },
+                                {id:nextTagId++, name:"SDET", entity_type:"skill", color:"", icon:"", entity_parent: null  },
+                                {id:nextTagId++, name:"TestRail", entity_type:"tool", color:"", icon:"", entity_parent: null  },
   {id:nextTagId++, name:"ArcGIS", entity_type:"tool" },
-                                {id:nextTagId++, "name":"GIS", entity_type:"skill" }
+                                {id:nextTagId++, "name":"GIS", entity_type:"skill", color:"", icon:"", entity_parent: null  }
 ]
   entities.value = tagData;
   let nextId = 1;
