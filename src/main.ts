@@ -17,8 +17,8 @@ const pinia = createPinia();
 app.use(pinia);
 app.use(router);
 
-app.config.globalProperties.$entitiesIcon = ref('');
-app.config.globalProperties.$positionsIcon = ref('');
+app.config.globalProperties.$entitiesIcon = ref('bi bi-building');
+app.config.globalProperties.$positionsIcon = ref('bi bi-briefcase');
 
 
 app.mount('#app');
