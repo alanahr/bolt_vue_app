@@ -10,7 +10,7 @@ export const useEntityStore = defineStore('entities', () => {
 let nextTagId = 1;
 
 const tagData = [
-  {id: nextTagId++, name:"agile", entity_type:"skill" },
+  {id: nextTagId++, name:"agile", entity_type:"skill", color:"", icon:"", entity_parent: null },
   {id: nextTagId++, name:"QA", entity_type:"skill" },
                                 {id:nextTagId++, name:"SDET", entity_type:"skill" },
                                 {id:nextTagId++, name:"TestRail", entity_type:"tool" },
