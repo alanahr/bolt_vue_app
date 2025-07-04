@@ -16,7 +16,7 @@
             "description": "The entity's name."
         },
        "entity_parent": {
-         
+          "$ref": "#" 
         },
         "entity_type": {
             "type": "string",
