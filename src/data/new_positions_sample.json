@@ -1,14 +1,14 @@
 {"positions":[
             {
                 "id": new ObjectId(),
-                "start_year":2022,
+                "start_year":2010,
                 "start_month":1,
-                "start_day":31,
-                "end_year":2023,
-                "end_month":3,
+                "start_day":1,
+                "end_year":2015,
+                "end_month":4,
                 "end_day":1,
-                "name":"Senior Software Engineer", 
-                "salary":120000,
+                "name":"Developer", 
+                "salary":65000,
                 "details":
                 [
                     {   "id": new ObjectId(),
@@ -175,12 +175,12 @@
             },
             {   
             "id": new ObjectId(),
-            "start_year":2017,
-            "start_month":6,
-            "start_day":5,
+            "start_year":2015,
+            "start_month":5,
+            "start_day":1,
             "end_year":2017,
             "end_month":10,
-            "end_day":15,
+            "end_day":1,
             "name":"QA Engineer",
             "salary":70000,
             "details":
