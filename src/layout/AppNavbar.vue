@@ -33,7 +33,7 @@
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/positions" active-class="active">
-              Jobs
+             <i class="bi bi-briefcase me-2"></i>  Jobs
             </router-link>
           </li>
         </ul>
