@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>{{ title }}</h3>
-    <pre>{{ valueString }}</pre>
+   <code> <pre>{{ valueString }}</pre> </code>
   </div>
 </template>
 <script>
