@@ -18,6 +18,7 @@ app.use(pinia);
 app.use(router);
 
 app.config.globalProperties.$entitiesIcon = ref('bi bi-building');
+app.provide('entitiesIcon', 'bi bi-building')
 app.config.globalProperties.$positionsIcon = ref('bi bi-briefcase');
 
 
