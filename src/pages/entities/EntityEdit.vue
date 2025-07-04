@@ -46,7 +46,7 @@ const filteredEntities = computed(() => {
     (entity) =>
       entity.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
-    .filter(number => !excludedNumbers.includes(number));
+    //.filter(number => !excludedNumbers.includes(number));
     ;
 });
 
