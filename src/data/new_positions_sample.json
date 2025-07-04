@@ -223,12 +223,12 @@
         {    
         "id": 5,
         "start_year":2017,
-        "start_month":10,
-        "start_day":16,
+        "start_month":11,
+        "start_day":1,
         "end_year":2019,
         "end_month":null,
         "end_day":null,
-        "name":"(Sr) Data Operations Engineer", 
+        "name":"Senior QA Engineer", 
         "salary":75000,
         "details":[]
         }
