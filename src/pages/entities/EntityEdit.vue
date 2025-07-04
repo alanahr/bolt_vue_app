@@ -56,6 +56,32 @@ const addParentEntity = (id: string) => {
    entity.value.entity_parent = parentEntity
   }
 }
+
+
+const entityIcon = computed(() => {
+  if (!entity.value) return 'bi-question-circle'
+  
+  switch (entity.value.entity_type) {
+    case 'company': return 'bi-building fs-1'
+    case 'person': return 'bi-person fs-1'
+    case 'location': return 'bi-geo-alt fs-1'
+    default: return 'bi-circle fs-1'
+  }
+})
+const getEntityIcon = (type: string) => {
+   if (!type) return 'bi-question-circle'
+  
+  switch (type) {
+    case 'company': return 'bi-building fs-1'
+    case 'person': return 'bi-person fs-1'
+    case 'location': return 'bi-geo-alt fs-1'
+    default: return 'bi-circle fs-1'
+  }
+}
+  
+const formatEntityType = (type: string) => {
+  return type.charAt(0).toUpperCase() + type.slice(1)
+}
   
 const handleSubmit = async () => {
   if (route.params.id) {
