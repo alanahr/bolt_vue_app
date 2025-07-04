@@ -52,7 +52,7 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="createDropdown">
               <li>
                 <router-link class="dropdown-item" to="/entities/new">
-                  <i class="bi bi-building me-2"></i> Entity
+                  <i :class="$entitiesIcon" class="me-2"></i> Entity
                 </router-link>
               </li>
               <li>
