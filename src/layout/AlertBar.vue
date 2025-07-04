@@ -14,7 +14,7 @@
 <script setup lang="ts">
 
 import { computed } from 'vue'
-import { useAlertsStore } from '../../stores/alertStore'
+import { useAlertsStore } from '../stores/alerts'
 
 const alertStore = useAlertsStore()
 
