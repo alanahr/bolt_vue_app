@@ -5,7 +5,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/positions'
+      component: () => import('../pages/Landing.vue')
     },
     {
       path: '/entities',
