@@ -18,9 +18,9 @@ app.use(pinia);
 app.use(router);
 
 // #todo figure out best way to add constants... see how i18n done
-app.config.globalProperties.$entitiesIcon = ref('bi bi-building');
+app.config.globalProperties.entitiesIcon = ref('bi bi-building');
 app.provide('entitiesIcon', 'bi bi-building')
-app.config.globalProperties.$positionsIcon = ref('bi bi-briefcase');
+app.config.globalProperties.positionsIcon = ref('bi bi-briefcase');
 
 
 app.mount('#app');
