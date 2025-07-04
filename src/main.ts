@@ -16,4 +16,9 @@ const pinia = createPinia();
 
 app.use(pinia);
 app.use(router);
+
+app.config.globalProperties.$entitiesIcon = ref('');
+app.config.globalProperties.$positionsIcon = ref('');
+
+
 app.mount('#app');
