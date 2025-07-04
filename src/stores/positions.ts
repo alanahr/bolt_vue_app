@@ -8,7 +8,6 @@ export const usePositionStore = defineStore('positions', () => {
 
   let nextId = 1;
   let nextDetailsId = 1;
-  let nextTagId = 1;
 
   //initialize sample details for the position
   const details = {
@@ -55,17 +54,13 @@ export const usePositionStore = defineStore('positions', () => {
         },
       ],
     },
-    tags: [{ id: nextTagId++, name: 'agile', entity_type: 'skill' }],
+    tags: [],
 
     details: [
       {
         id: nextDetailsId++,
         name: "main job thing I'm talking about here like TestRail",
-        tags: [
-          { id: nextTagId++, name: 'QA', entity_type: 'skill' },
-          { id: nextTagId++, name: 'SDET', entity_type: 'skill' },
-          { id: nextTagId++, name: 'TestRail', entity_type: 'tool' },
-        ],
+        tags: [],
         description: {},
         details: [],
       },
@@ -74,8 +69,6 @@ export const usePositionStore = defineStore('positions', () => {
         name: 'Presentations and arcgis',
 
         tags: [
-          { id: nextTagId++, name: 'ArcGIS', entity_type: 'tool' },
-          { id: nextTagId++, name: 'GIS', entity_type: 'skill' },
         ],
         description: {
           type: 'doc',
