@@ -1,0 +1,16 @@
+# Development Dockerfile
+FROM node:18-alpine as base
+
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Development stage
+FROM base as development
+EXPOSE 5173
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

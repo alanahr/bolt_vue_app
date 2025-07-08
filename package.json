@@ -10,8 +10,19 @@
     "test": "vitest",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
+    "cypress:run:record": "cypress run --record --key $CYPRESS_RECORD_KEY",
+    "cypress:run:headed": "cypress run --headed --browser chrome",
     "test:e2e": "start-server-and-test dev http://localhost:5173 cypress:run",
-    "test:e2e:open": "start-server-and-test dev http://localhost:5173 cypress:open"
+    "test:e2e:open": "start-server-and-test dev http://localhost:5173 cypress:open",
+    "test:e2e:ci": "start-server-and-test preview http://localhost:4173 cypress:run",
+    "test:component": "cypress run --component",
+    "test:component:open": "cypress open --component",
+    "docker:dev": "docker-compose up frontend-dev",
+    "docker:prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up",
+    "docker:test": "docker-compose --profile testing up cypress",
+    "docker:setup": "chmod +x scripts/docker-setup.sh && ./scripts/docker-setup.sh",
+    "docker:build": "docker-compose build",
+    "docker:clean": "docker-compose down -v --remove-orphans && docker system prune -f"
   },
   "dependencies": {
     "@tiptap/extension-code-block": "^2.22.0",

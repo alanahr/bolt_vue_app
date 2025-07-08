@@ -1,0 +1,22 @@
+# Cypress testing Dockerfile
+FROM cypress/browsers:node-18.16.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Verify Cypress installation
+RUN npx cypress verify
+
+# Set user permissions
+USER 1001
+
+# Default command
+CMD ["npm", "run", "cypress:run"]
