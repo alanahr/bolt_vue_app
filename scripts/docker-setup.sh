@@ -1,14 +1,13 @@
 #!/bin/bash
 
-# Docker setup script for Vue CRUD application
+# Docker setup script for Vue CRUD fullstack application
 
 set -e
 
-echo "🚀 Setting up Docker environment for Vue CRUD application..."
+echo "🚀 Setting up Docker environment for Vue CRUD fullstack application..."
 
 # Create necessary directories
 mkdir -p ssl
-mkdir -p mock-backend
 
 # Generate self-signed SSL certificates for development
 if [ ! -f ssl/cert.pem ]; then
@@ -16,60 +15,6 @@ if [ ! -f ssl/cert.pem ]; then
     openssl req -x509 -newkey rsa:4096 -keyout ssl/key.pem -out ssl/cert.pem -days 365 -nodes \
         -subj "/C=US/ST=State/L=City/O=Organization/CN=localhost"
     echo "✅ SSL certificates generated"
-fi
-
-# Create mock backend server
-if [ ! -f mock-backend/server.js ]; then
-    echo "🔧 Creating mock backend server..."
-    cat > mock-backend/server.js << 'EOF'
-const http = require('http');
-const url = require('url');
-
-const server = http.createServer((req, res) => {
-    const parsedUrl = url.parse(req.url, true);
-    
-    // Enable CORS
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    
-    if (req.method === 'OPTIONS') {
-        res.writeHead(200);
-        res.end();
-        return;
-    }
-    
-    // Mock API responses
-    if (parsedUrl.pathname === '/health') {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ status: 'healthy', timestamp: new Date().toISOString() }));
-    } else if (parsedUrl.pathname.startsWith('/api/')) {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: 'Mock API response', path: parsedUrl.pathname }));
-    } else {
-        res.writeHead(404, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Not found' }));
-    }
-});
-
-const PORT = process.env.PORT || 8000;
-server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Mock backend server running on port ${PORT}`);
-});
-EOF
-
-    cat > mock-backend/package.json << 'EOF'
-{
-  "name": "mock-backend",
-  "version": "1.0.0",
-  "description": "Mock backend for Vue CRUD app",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  }
-}
-EOF
-    echo "✅ Mock backend created"
 fi
 
 # Create .dockerignore if it doesn't exist
@@ -87,23 +32,37 @@ coverage
 .cache
 dist
 .DS_Store
-cypress/videos
-cypress/screenshots
+frontend/cypress/videos
+frontend/cypress/screenshots
 .github
+backend/node_modules
+frontend/node_modules
 EOF
     echo "✅ .dockerignore created"
+fi
+
+# Install dependencies for both frontend and backend
+echo "📦 Installing dependencies..."
+if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then
+    echo "Installing frontend dependencies..."
+    cd frontend && npm install && cd ..
+fi
+
+if [ -d "backend" ] && [ -f "backend/package.json" ]; then
+    echo "Installing backend dependencies..."
+    cd backend && npm install && cd ..
 fi
 
 echo "🎉 Docker setup complete!"
 echo ""
 echo "Available commands:"
-echo "  Development:     docker-compose up frontend-dev"
-echo "  Production:      docker-compose -f docker-compose.yml -f docker-compose.prod.yml up"
-echo "  Testing:         docker-compose --profile testing up cypress"
-echo "  With backend:    docker-compose --profile with-backend up"
-echo "  Full stack:      docker-compose --profile with-backend up frontend-dev backend"
+echo "  Development:     npm run docker:dev"
+echo "  Production:      npm run docker:prod"
+echo "  Testing:         npm run docker:test"
+echo "  Full stack dev:  docker-compose up frontend-dev backend-dev"
 echo ""
 echo "Access points:"
-echo "  Development:     http://localhost:5173"
+echo "  Frontend Dev:    http://localhost:5173"
+echo "  Backend Dev:     http://localhost:8000"
 echo "  Production:      https://localhost (with nginx)"
-echo "  Mock Backend:    http://localhost:8000"
+echo "  Backend Prod:    http://localhost:8001"

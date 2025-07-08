@@ -1,6 +1,7 @@
 import { defineConfig } from 'cypress'
 
 export default defineConfig({
+  projectId: 'your-project-id', // Add your Cypress Dashboard project ID here
   e2e: {
     baseUrl: 'http://localhost:5173',
     setupNodeEvents(on, config) {
@@ -10,8 +11,15 @@ export default defineConfig({
     supportFile: 'cypress/support/e2e.ts',
     viewportWidth: 1280,
     viewportHeight: 720,
-    video: false,
+    video: true,
     screenshotOnRunFailure: true,
+    retries: {
+      runMode: 2,
+      openMode: 0
+    },
+    env: {
+      coverage: false
+    }
   },
   component: {
     devServer: {
@@ -20,5 +28,7 @@ export default defineConfig({
     },
     specPattern: 'cypress/component/**/*.cy.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/component.ts',
+    video: true,
+    screenshotOnRunFailure: true,
   },
 })

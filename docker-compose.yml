@@ -4,14 +4,13 @@ services:
   # Development environment with hot reload
   frontend-dev:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile.dev
-      target: development
     container_name: vue-crud-dev
     ports:
       - "5173:5173"
     volumes:
-      - .:/app
+      - ./frontend:/app
       - /app/node_modules
     environment:
       - NODE_ENV=development
@@ -20,15 +19,16 @@ services:
       - VITE_BACKEND_WSURI=ws
     networks:
       - app-network
+    depends_on:
+      - backend-dev
     command: npm run dev
     restart: unless-stopped
 
   # Production build and serve
   frontend-prod:
     build:
-      context: .
-      dockerfile: Dockerfile.prod
-      target: production
+      context: ./frontend
+      dockerfile: Dockerfile
     container_name: vue-crud-prod
     ports:
       - "4173:4173"
@@ -37,6 +37,43 @@ services:
       - VITE_BACKEND_URI=backend
       - VITE_BACKEND_PORT=8000
       - VITE_BACKEND_WSURI=ws
+    networks:
+      - app-network
+    depends_on:
+      - backend-prod
+    restart: unless-stopped
+
+  # Backend Development
+  backend-dev:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: vue-crud-backend-dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=8000
+      - CORS_ORIGINS=http://localhost:5173,http://frontend-dev:5173
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  # Backend Production
+  backend-prod:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: vue-crud-backend-prod
+    ports:
+      - "8001:8000"
+    environment:
+      - NODE_ENV=production
+      - PORT=8000
+      - CORS_ORIGINS=https://localhost,http://frontend-prod:4173
     networks:
       - app-network
     restart: unless-stopped
@@ -54,6 +91,7 @@ services:
       - ./ssl:/etc/nginx/ssl:ro
     depends_on:
       - frontend-prod
+      - backend-prod
     networks:
       - app-network
     restart: unless-stopped
@@ -61,11 +99,11 @@ services:
   # Cypress testing service
   cypress:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile.cypress
     container_name: vue-crud-cypress
     volumes:
-      - .:/app
+      - ./frontend:/app
       - /app/node_modules
     environment:
       - CYPRESS_baseUrl=http://frontend-dev:5173
@@ -75,27 +113,10 @@ services:
       - app-network
     depends_on:
       - frontend-dev
+      - backend-dev
     profiles:
       - testing
     command: npm run cypress:run
-
-  # Mock backend service (optional)
-  backend:
-    image: node:18-alpine
-    container_name: vue-crud-backend
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./mock-backend:/app
-    working_dir: /app
-    environment:
-      - NODE_ENV=development
-      - PORT=8000
-    networks:
-      - app-network
-    command: node server.js
-    profiles:
-      - with-backend
 
 networks:
   app-network:

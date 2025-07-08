@@ -1,4 +1,4 @@
-# Production Dockerfile
+# Frontend Production Dockerfile
 FROM node:18-alpine as builder
 
 WORKDIR /app
@@ -28,9 +28,9 @@ COPY --from=builder /app/dist ./dist
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs && \
-    adduser -S vue -u 1001
+    adduser -S frontend -u 1001
 
-USER vue
+USER frontend
 
 EXPOSE 4173
 
