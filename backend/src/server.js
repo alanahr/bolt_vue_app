@@ -6,6 +6,7 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 
+import database from './config/database.js';
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import positionsRoutes from './routes/positions.js';
 import entitiesRoutes from './routes/entities.js';
@@ -75,11 +76,48 @@ app.get('/', (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 
-// Start server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Server running on port ${PORT} in ${NODE_ENV} mode`);
-  console.log(`📡 Health check: http://localhost:${PORT}/health`);
-  console.log(`🔗 API base URL: http://localhost:${PORT}/api`);
+// Initialize database and start server
+const startServer = async () => {
+  try {
+    // Connect to MongoDB
+    await database.connect();
+    
+    // Start server
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🚀 Server running on port ${PORT} in ${NODE_ENV} mode`);
+      console.log(`📡 Health check: http://localhost:${PORT}/health`);
+      console.log(`🔗 API base URL: http://localhost:${PORT}/api`);
+    });
+  } catch (error) {
+    console.error('❌ Failed to start server:', error);
+    process.exit(1);
+  }
+};
+
+// Handle graceful shutdown
+process.on('SIGINT', async () => {
+  console.log('\n🛑 Received SIGINT. Graceful shutdown...');
+  try {
+    await database.disconnect();
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Error during shutdown:', error);
+    process.exit(1);
+  }
 });
+
+process.on('SIGTERM', async () => {
+  console.log('\n🛑 Received SIGTERM. Graceful shutdown...');
+  try {
+    await database.disconnect();
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Error during shutdown:', error);
+    process.exit(1);
+  }
+});
+
+// Start the server
+startServer();
 
 export default app;

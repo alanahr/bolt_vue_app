@@ -21,6 +21,8 @@ services:
       - app-network
     depends_on:
       - backend-dev
+      - mongodb
+      - mongodb
     command: npm run dev
     restart: unless-stopped
 
@@ -41,6 +43,8 @@ services:
       - app-network
     depends_on:
       - backend-prod
+      - mongodb
+      - mongodb
     restart: unless-stopped
 
   # Backend Development
@@ -118,6 +122,29 @@ services:
       - testing
     command: npm run cypress:run
 
+  # MongoDB database
+  mongodb:
+    image: mongo:7.0
+    container_name: vue-crud-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password123
+      - MONGO_INITDB_DATABASE=vue_crud_db
+    volumes:
+      - mongodb_data:/data/db
+      - ./backend/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
 networks:
   app-network:
     driver: bridge
@@ -125,3 +152,4 @@ networks:
 volumes:
   node_modules:
   cypress_cache:
+  mongodb_data:

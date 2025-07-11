@@ -12,6 +12,7 @@ A full-stack CRUD application with Vue 3 frontend and Node.js/Express backend, f
 ├── backend/           # Node.js + Express API
 │   ├── src/
 │   └── Dockerfile*    # Backend containers
+├── mongodb/           # MongoDB database container
 ├── nginx/             # Reverse proxy configuration
 ├── ssl/               # SSL certificates
 └── docker-compose.yml # Multi-container orchestration
@@ -75,6 +76,7 @@ npm run dev:backend
 | `backend-dev` | 8000 | Express dev server with nodemon |
 | `backend-prod` | 8001 | Production backend server |
 | `nginx` | 80/443 | Reverse proxy with SSL |
+| `mongodb` | 27017 | MongoDB database server |
 | `cypress` | - | Testing service (profile: testing) |
 
 ## 🔧 **Available Scripts**
@@ -175,6 +177,13 @@ Comprehensive GitHub Actions workflows included:
 - Morgan logging
 - Compression middleware
 
+### **Database**
+- MongoDB 7.0
+- Native MongoDB driver
+- Connection pooling
+- Automatic reconnection
+- Health monitoring
+
 ### **DevOps**
 - Docker & Docker Compose
 - Multi-stage builds
@@ -189,6 +198,8 @@ Comprehensive GitHub Actions workflows included:
 ```env
 NODE_ENV=development
 PORT=8000
+MONGODB_URI=mongodb://admin:password123@mongodb:27017/vue_crud_db?authSource=admin
+MONGODB_DB_NAME=vue_crud_db
 CORS_ORIGINS=http://localhost:5173
 RATE_LIMIT_WINDOW_MS=900000
 RATE_LIMIT_MAX_REQUESTS=100

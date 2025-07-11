@@ -1,55 +1,114 @@
-import { v4 as uuidv4 } from 'uuid';
+import database from '../config/database.js';
 
-// In-memory storage (replace with database in production)
-let entities = [
-  { id: 1, name: "agile", entity_type: "skill", color: "#40dae2", icon: "bi bi-backpack", entity_parent: null },
-  { id: 2, name: "QA", entity_type: "skill", color: "", icon: "", entity_parent: null },
-  { id: 3, name: "SDET", entity_type: "skill", color: "", icon: "", entity_parent: null },
-  { id: 4, name: "TestRail", entity_type: "tool", color: "", icon: "", entity_parent: null },
-  { id: 5, name: "ArcGIS", entity_type: "tool", color: "", icon: "", entity_parent: null },
-  { id: 6, name: "GIS", entity_type: "skill", color: "", icon: "", entity_parent: null },
-];
+const COLLECTION_NAME = 'entities';
 
-let nextId = 7;
+// Get next available ID
+const getNextId = async () => {
+  const db = database.getDb();
+  const lastEntity = await db.collection(COLLECTION_NAME)
+    .findOne({}, { sort: { id: -1 } });
+  return lastEntity ? lastEntity.id + 1 : 1;
+};
 
 export const findAll = async () => {
-  return entities;
+  try {
+    const db = database.getDb();
+    const entities = await db.collection(COLLECTION_NAME)
+      .find({})
+      .sort({ id: 1 })
+      .toArray();
+    
+    // Remove MongoDB _id field from results
+    return entities.map(({ _id, ...entity }) => entity);
+  } catch (error) {
+    console.error('Error finding all entities:', error);
+    throw error;
+  }
 };
 
 export const findById = async (id) => {
-  return entities.find(e => e.id === id);
+  try {
+    const db = database.getDb();
+    const entity = await db.collection(COLLECTION_NAME)
+      .findOne({ id: parseInt(id) });
+    
+    if (!entity) return null;
+    
+    // Remove MongoDB _id field
+    const { _id, ...entityData } = entity;
+    return entityData;
+  } catch (error) {
+    console.error('Error finding entity by ID:', error);
+    throw error;
+  }
 };
 
 export const create = async (entityData) => {
-  const newEntity = {
-    id: nextId++,
-    ...entityData,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  };
-  
-  entities.push(newEntity);
-  return newEntity;
+  try {
+    const db = database.getDb();
+    const id = await getNextId();
+    
+    const newEntity = {
+      id,
+      ...entityData,
+      created_at: new Date(),
+      updated_at: new Date(),
+    };
+    
+    const result = await db.collection(COLLECTION_NAME)
+      .insertOne(newEntity);
+    
+    if (!result.insertedId) {
+      throw new Error('Failed to create entity');
+    }
+    
+    // Remove MongoDB _id field
+    const { _id, ...createdEntity } = newEntity;
+    return createdEntity;
+  } catch (error) {
+    console.error('Error creating entity:', error);
+    throw error;
+  }
 };
 
 export const update = async (id, entityData) => {
-  const index = entities.findIndex(e => e.id === id);
-  if (index === -1) return null;
-  
-  entities[index] = {
-    ...entities[index],
-    ...entityData,
-    id, // Ensure ID doesn't change
-    updated_at: new Date().toISOString(),
-  };
-  
-  return entities[index];
+  try {
+    const db = database.getDb();
+    const parsedId = parseInt(id);
+    
+    const updateData = {
+      ...entityData,
+      id: parsedId, // Ensure ID doesn't change
+      updated_at: new Date(),
+    };
+    
+    const result = await db.collection(COLLECTION_NAME)
+      .findOneAndUpdate(
+        { id: parsedId },
+        { $set: updateData },
+        { returnDocument: 'after' }
+      );
+    
+    if (!result.value) return null;
+    
+    // Remove MongoDB _id field
+    const { _id, ...updatedEntity } = result.value;
+    return updatedEntity;
+  } catch (error) {
+    console.error('Error updating entity:', error);
+    throw error;
+  }
 };
 
 export const remove = async (id) => {
-  const index = entities.findIndex(e => e.id === id);
-  if (index === -1) return false;
-  
-  entities.splice(index, 1);
-  return true;
+  try {
+    const db = database.getDb();
+    const result = await db.collection(COLLECTION_NAME)
+      .deleteOne({ id: parseInt(id) });
+    
+    return result.deletedCount > 0;
+  } catch (error) {
+    console.error('Error removing entity:', error);
+    throw error;
+  }
 };
