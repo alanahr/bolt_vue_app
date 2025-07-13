@@ -14,14 +14,13 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-      - VITE_BACKEND_URI=backend
+      - VITE_BACKEND_URI=backend-dev
       - VITE_BACKEND_PORT=8000
       - VITE_BACKEND_WSURI=ws
     networks:
       - app-network
     depends_on:
       - backend-dev
-      - mongodb
       - mongodb
     command: npm run dev
     restart: unless-stopped
@@ -36,7 +35,7 @@ services:
       - "4173:4173"
     environment:
       - NODE_ENV=production
-      - VITE_BACKEND_URI=backend
+      - VITE_BACKEND_URI=backend-prod
       - VITE_BACKEND_PORT=8000
       - VITE_BACKEND_WSURI=ws
     networks:
@@ -44,10 +43,9 @@ services:
     depends_on:
       - backend-prod
       - mongodb
-      - mongodb
     restart: unless-stopped
 
-  # Backend Development
+  # Backend Development (FastAPI)
   backend-dev:
     build:
       context: ./backend
@@ -57,16 +55,19 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
-      - /app/node_modules
     environment:
       - NODE_ENV=development
       - PORT=8000
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/vue_crud_db?authSource=admin
+      - MONGODB_DB_NAME=vue_crud_db
       - CORS_ORIGINS=http://localhost:5173,http://frontend-dev:5173
     networks:
       - app-network
+    depends_on:
+      - mongodb
     restart: unless-stopped
 
-  # Backend Production
+  # Backend Production (FastAPI)
   backend-prod:
     build:
       context: ./backend
@@ -77,9 +78,13 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=8000
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/vue_crud_db?authSource=admin
+      - MONGODB_DB_NAME=vue_crud_db
       - CORS_ORIGINS=https://localhost,http://frontend-prod:4173
     networks:
       - app-network
+    depends_on:
+      - mongodb
     restart: unless-stopped
 
   # Nginx reverse proxy for production

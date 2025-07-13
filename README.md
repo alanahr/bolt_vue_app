@@ -1,6 +1,6 @@
-# Vue 3 + TypeScript + Node.js Fullstack Application
+# Vue 3 + TypeScript + FastAPI Fullstack Application
 
-A full-stack CRUD application with Vue 3 frontend and Node.js/Express backend, featuring TipTap rich text editor, nested details functionality, and comprehensive Docker deployment.
+A full-stack CRUD application with Vue 3 frontend and FastAPI backend, featuring TipTap rich text editor, nested details functionality, and comprehensive Docker deployment.
 
 ## 🏗️ **Architecture**
 
@@ -9,8 +9,13 @@ A full-stack CRUD application with Vue 3 frontend and Node.js/Express backend, f
 │   ├── src/
 │   ├── cypress/       # E2E and component tests
 │   └── Dockerfile*    # Frontend containers
-├── backend/           # Node.js + Express API
+├── backend/           # FastAPI + Python + MongoDB
 │   ├── src/
+│   │   ├── models/    # Pydantic models
+│   │   ├── routers/   # API endpoints
+│   │   ├── services/  # Business logic
+│   │   ├── config/    # Database configuration
+│   │   └── middleware/# Custom middleware
 │   └── Dockerfile*    # Backend containers
 ├── nginx/             # Reverse proxy configuration
 ├── ssl/               # SSL certificates
@@ -21,6 +26,7 @@ A full-stack CRUD application with Vue 3 frontend and Node.js/Express backend, f
 
 ### **Prerequisites**
 - Docker & Docker Compose
+- Python 3.11+ (for local development)
 - Node.js 18+ (for local development)
 
 ### **Setup & Run**
@@ -44,27 +50,31 @@ npm run install:all
 npm run dev:frontend
 
 # Run backend (terminal 2)
-npm run dev:backend
+cd backend && uvicorn src.main:app --reload
 ```
 
 ## 📡 **API Endpoints**
 
 ### **Positions**
 - `GET /api/positions` - List all positions
-- `GET /api/positions/:id` - Get position by ID
+- `GET /api/positions/{id}` - Get position by ID
 - `POST /api/positions` - Create new position
-- `PUT /api/positions/:id` - Update position
-- `DELETE /api/positions/:id` - Delete position
+- `PUT /api/positions/{id}` - Update position
+- `DELETE /api/positions/{id}` - Delete position
 
 ### **Entities**
 - `GET /api/entities` - List all entities
-- `GET /api/entities/:id` - Get entity by ID
+- `GET /api/entities/{id}` - Get entity by ID
 - `POST /api/entities` - Create new entity
-- `PUT /api/entities/:id` - Update entity
-- `DELETE /api/entities/:id` - Delete entity
+- `PUT /api/entities/{id}` - Update entity
+- `DELETE /api/entities/{id}` - Delete entity
 
 ### **Health Check**
 - `GET /health` - Application health status
+
+### **API Documentation**
+- `GET /docs` - Interactive Swagger UI
+- `GET /redoc` - ReDoc documentation
 
 ## 🐳 **Docker Services**
 
@@ -72,8 +82,8 @@ npm run dev:backend
 |---------|------|-------------|
 | `frontend-dev` | 5173 | Vue dev server with hot reload |
 | `frontend-prod` | 4173 | Production frontend build |
-| `backend-dev` | 8000 | Express dev server with nodemon |
-| `backend-prod` | 8001 | Production backend server |
+| `backend-dev` | 8000 | FastAPI dev server with auto-reload |
+| `backend-prod` | 8001 | Production FastAPI server |
 | `nginx` | 80/443 | Reverse proxy with SSL |
 | `mongodb` | 27017 | MongoDB database server |
 | `cypress` | - | Testing service (profile: testing) |
@@ -84,7 +94,7 @@ npm run dev:backend
 ```bash
 npm run dev              # Full stack development
 npm run dev:frontend     # Frontend only
-npm run dev:backend      # Backend only
+npm run dev:backend      # Backend only (requires Python setup)
 npm run docker:dev       # Docker development
 ```
 
@@ -109,11 +119,11 @@ npm run docker:build    # Build all images
 npm run docker:clean    # Clean containers & images
 ```
 
-## Testing
+## 🧪 **Testing**
 
 The application includes comprehensive testing with Cypress for both E2E and component testing.
 
-### Running Tests Locally
+### **Running Tests Locally**
 
 ```bash
 # Interactive mode
@@ -126,7 +136,7 @@ cd frontend && npm run cypress:run
 npm run docker:test
 ```
 
-### CI/CD Pipeline
+### **CI/CD Pipeline**
 
 Comprehensive GitHub Actions workflows included:
 
@@ -136,10 +146,11 @@ Comprehensive GitHub Actions workflows included:
 
 ## 🔒 **Security Features**
 
-- **Helmet.js**: Security headers
+- **FastAPI Security**: Built-in request validation and sanitization
+- **Pydantic Models**: Strong type validation and data serialization
 - **CORS**: Configurable origins
 - **Rate Limiting**: API protection
-- **Input Validation**: Express-validator
+- **TrustedHost Middleware**: Host validation
 - **SSL/TLS**: HTTPS support
 - **Non-root Containers**: Security best practices
 
@@ -148,7 +159,8 @@ Comprehensive GitHub Actions workflows included:
 ### **Development**
 - Frontend: http://localhost:5173
 - Backend: http://localhost:8000
-- API Docs: http://localhost:8000/api
+- API Docs: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
 
 ### **Production**
 - Application: https://localhost (via nginx)
@@ -168,17 +180,17 @@ Comprehensive GitHub Actions workflows included:
 - Cypress testing
 
 ### **Backend**
-- Node.js 18+
-- Express.js framework
-- ES6 modules
-- Express-validator
-- CORS & Helmet security
-- Morgan logging
-- Compression middleware
+- Python 3.11+
+- FastAPI framework
+- Pydantic for data validation
+- Motor (async MongoDB driver)
+- Uvicorn ASGI server
+- Automatic API documentation
+- Type hints throughout
 
 ### **Database**
 - MongoDB 7.0
-- Native MongoDB driver
+- Motor async driver
 - Connection pooling
 - Automatic reconnection
 - Health monitoring
@@ -210,6 +222,30 @@ VITE_BACKEND_URI=localhost
 VITE_BACKEND_PORT=8000
 VITE_BACKEND_WSURI=ws
 ```
+
+## 🚀 **FastAPI Features**
+
+### **Automatic API Documentation**
+- **Swagger UI**: Interactive API documentation at `/docs`
+- **ReDoc**: Alternative documentation at `/redoc`
+- **OpenAPI Schema**: Automatically generated from Pydantic models
+
+### **Data Validation**
+- **Pydantic Models**: Strong typing and validation
+- **Request/Response Models**: Automatic serialization/deserialization
+- **Error Handling**: Detailed validation error messages
+
+### **Performance**
+- **Async/Await**: Non-blocking I/O operations
+- **Motor**: Async MongoDB driver
+- **Uvicorn**: High-performance ASGI server
+- **Connection Pooling**: Efficient database connections
+
+### **Developer Experience**
+- **Type Hints**: Full type safety
+- **Auto-reload**: Development server with hot reload
+- **Dependency Injection**: Clean, testable code architecture
+- **Middleware**: Custom rate limiting and security
 
 ## 🤝 **Contributing**
 
