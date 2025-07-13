@@ -12,7 +12,6 @@ A full-stack CRUD application with Vue 3 frontend and Node.js/Express backend, f
 ├── backend/           # Node.js + Express API
 │   ├── src/
 │   └── Dockerfile*    # Backend containers
-├── mongodb/           # MongoDB database container
 ├── nginx/             # Reverse proxy configuration
 ├── ssl/               # SSL certificates
 └── docker-compose.yml # Multi-container orchestration

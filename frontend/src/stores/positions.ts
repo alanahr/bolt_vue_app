@@ -1,12 +1,24 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { Position } from '../types';
-import api from '../composables/h\ttpClient';
+import axios from 'axios';
+
+const baseUrl = import.meta.env.VITE_BACKEND_URI;
+const apiPort = import.meta.env.VITE_BACKEND_PORT;
+const apiUrl = `http://${baseUrl}:${apiPort}/api`;
+
+const api = axios.create({
+  baseURL: apiUrl,
+  timeout: 30000,
+  headers: {
+    'Content-type': 'application/json',
+  }
+});
 
 export const usePositionStore = defineStore('positions', () => {
   const positions = ref<Position[]>([]);
 
-  async fu\nction addPosition(position: Omit<Position, 'id'>) {
+  async function addPosition(position: Omit<Position, 'id'>) {
     try {
       const response = await api.post('/positions', position);
       const newPosition = response.data.data;

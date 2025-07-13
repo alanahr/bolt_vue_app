@@ -1,7 +1,19 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { Entity } from '../types';
-import api from '../composables/httpClient';
+import axios from 'axios';
+
+const baseUrl = import.meta.env.VITE_BACKEND_URI;
+const apiPort = import.meta.env.VITE_BACKEND_PORT;
+const apiUrl = `http://${baseUrl}:${apiPort}/api`;
+
+const api = axios.create({
+  baseURL: apiUrl,
+  timeout: 30000,
+  headers: {
+    'Content-type': 'application/json',
+  }
+});
 
 export const useEntityStore = defineStore('entities', () => {
   const entities = ref<Entity[]>([]);
