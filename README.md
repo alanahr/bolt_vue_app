@@ -1,3 +1,7 @@
+** -------- **
+**Human Author Note:** This is a sample app to test out using Bolt (AI) to generate code with Bolt committing to git directly. I am working on a second version now that I know how to better set up Bolt and processes to get the most out of the AI. Unless otherwise noted like this, all documentation AI-generated.
+** -------- **
+
 # Vue 3 + TypeScript + FastAPI Fullstack Application
 
 A full-stack CRUD application with Vue 3 frontend and FastAPI backend, featuring TipTap rich text editor, nested details functionality, and comprehensive Docker deployment.
