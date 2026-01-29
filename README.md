@@ -2,13 +2,34 @@
 
 **Human Author Note:** 
 
-This is a sample app to test out using Bolt (AI) to generate code with Bolt committing to git directly. I am working on a second version now that I know how to better set up Bolt and processes to get the most out of the AI. Unless otherwise noted like this, all documentation AI-generated.
+This is a sample app to test out using Bolt (AI) to generate code with Bolt committing to git directly. I am working on a second version now that I know how to better set up Bolt and processes to get the most out of the AI. Most docs below are AI-generarted via a few tries with human edits interspersed for clarity and context.
 
 **--------**
 
-# Vue 3 + TypeScript + FastAPI Fullstack Application
+# Vue 3 + TypeScript + FastAPI Fullstack Application 
+## (for resume building by enabling nested job duties)
 
-A full-stack CRUD application with Vue 3 frontend and FastAPI backend, featuring TipTap rich text editor, nested details functionality, and comprehensive Docker deployment.
+A full-stack CRUD application with Vue 3 frontend and FastAPI backend, featuring TipTap rich text editor, nested details functionality, and comprehensive Docker deployment. 
+
+**Human Author Note:** 
+I created this as a way to test out Bolt but also when updating resumes, you often need to have different versions in which different job duties are emphasized but can be part of a single bullet point (e.g., a project, general duties, etc.), so I thought it'd be nice to have the ability to make a nested structure to copy and paste fromm.
+
+In the future, I would also like to enable mentions (in line references to other record(s) or a glossary item/something similar.
+
+### Screenshots 
+Screenshots of the landing/home page, adding an entity (company), and creating a position
+
+<picture>
+  <img src="home_screenshot.png" width="500" alt="image of landing page showing two buttons to add an entity or a position" />
+</picture>
+
+<picture>
+  <img src="create_entity_screenshot.png" width="500" alt="image of page showing the create entity form" />
+</picture>
+
+<picture>
+  <img src="position_screenshot.png" width="500" alt="image of page showing the create position form" />
+</picture>
 
 ## 🏗️ **Architecture**
 
