@@ -4,17 +4,17 @@
 
 set -e
 
-echo "🚀 Setting up Docker environment for Vue CRUD fullstack application..."
+echo "Setting up Docker environment for Vue CRUD fullstack application..."
 
 # Create necessary directories
 mkdir -p ssl
 
 # Generate self-signed SSL certificates for development
 if [ ! -f ssl/cert.pem ]; then
-    echo "📜 Generating self-signed SSL certificates..."
+    echo "Generating self-signed SSL certificates..."
     openssl req -x509 -newkey rsa:4096 -keyout ssl/key.pem -out ssl/cert.pem -days 365 -nodes \
         -subj "/C=US/ST=State/L=City/O=Organization/CN=localhost"
-    echo "✅ SSL certificates generated"
+    echo "SSL certificates generated"
 fi
 
 # Create .dockerignore if it doesn't exist
@@ -38,11 +38,11 @@ frontend/cypress/screenshots
 backend/node_modules
 frontend/node_modules
 EOF
-    echo "✅ .dockerignore created"
+    echo ".dockerignore created"
 fi
 
 # Install dependencies for both frontend and backend
-echo "📦 Installing dependencies..."
+echo "Installing dependencies..."
 if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then
     echo "Installing frontend dependencies..."
     cd frontend && npm install && cd ..
@@ -53,7 +53,7 @@ if [ -d "backend" ] && [ -f "backend/package.json" ]; then
     cd backend && npm install && cd ..
 fi
 
-echo "🎉 Docker setup complete!"
+echo "Docker setup complete!"
 echo ""
 echo "Available commands:"
 echo "  Development:     npm run docker:dev"
