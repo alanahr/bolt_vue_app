@@ -1,14 +1,25 @@
-**--------**
+# Vue 3 + TypeScript + FastAPI + MongoDB Fullstack Application 
+## with nested job duties by position with company info
 
-**Human Author Note:** 
+A full-stack CRUD application with Vue 3 frontend and FastAPI backend, featuring TipTap rich text editor, nested details functionality, and comprehensive Docker deployment. 
 
-This is a sample app to test out using Bolt (AI) to generate code with Bolt committing to git directly. I am working on a second version now that I know how to better set up Bolt and processes to get the most out of the AI. Unless otherwise noted like this, all documentation AI-generated.
+> This is a sample app to test out using Bolt (AI) to generate code with Bolt committing to git directly. I am working on a second version now that I know how to better set up Bolt and processes to get the most out of the AI. 
+> The documentation below is mostly AI-generated. The code is partially AI-generated as it's a habit to do things manually and the AI required some help and manual intervention.
 
-**--------**
+### Screenshots 
+Screenshots of the landing/home page, adding an entity (company), and creating a position
 
-# Vue 3 + TypeScript + FastAPI Fullstack Application
+<picture>
+  <img src="home_screenshot.png" width="500" alt="image of landing page showing two buttons to add an entity or a position" />
+</picture>
 
-A full-stack CRUD application with Vue 3 frontend and FastAPI backend, featuring TipTap rich text editor, nested details functionality, and comprehensive Docker deployment.
+<picture>
+  <img src="create_entity_screenshot.png" width="500" alt="image of page showing the create entity form" />
+</picture>
+
+<picture>
+  <img src="position_screenshot.png" width="500" alt="image of page showing the create position form" />
+</picture>
 
 ## 🏗️ **Architecture**
 

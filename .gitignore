@@ -49,6 +49,7 @@ MANIFEST
 .Trashes
 ehthumbs.db
 Thumbs.db
+Icon\?
 
 # Logs
 logs
@@ -264,3 +265,4 @@ cache/
 # Temporary files
 *.tmp
 *.temp
+Icon
